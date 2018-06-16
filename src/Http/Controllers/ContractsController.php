@@ -16,14 +16,12 @@ class ContractsController extends RestController
 
     public $queryable = [
         'id',
-        'name',
         'customer_id',
         'created_at',
         'updated_at',
     ];
 
     public $fillable = [
-        'name',
         'customer_id',
     ];
 

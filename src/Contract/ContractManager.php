@@ -23,7 +23,6 @@ class ContractManager extends ModelManager
      */
     protected $attributes = [
         Attributes\Id\IdAttribute::class,
-        Attributes\Name\NameAttribute::class,
         Attributes\CreatedAt\CreatedAtAttribute::class,
         Attributes\UpdatedAt\UpdatedAtAttribute::class,
         Attributes\DeletedAt\DeletedAtAttribute::class,
