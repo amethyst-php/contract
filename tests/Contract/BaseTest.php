@@ -65,22 +65,6 @@ abstract class BaseTest extends \Orchestra\Testbench\TestCase
     }
 
     /**
-     * New Taxonomy.
-     *
-     * @return \Railken\LaraOre\Taxonomy\Taxonomy
-     */
-    public function newTaxonomy()
-    {
-        $le = new TaxonomyManager();
-
-        $bag = new Bag();
-        $bag->set('name', 'Ban');
-        $bag->set('vocabulary_id', $lecm->getTaxonomyVocabulary()->id);
-
-        return $le->create($bag)->getResource();
-    }
-
-    /**
      * Retrieve correct Bag of parameters.
      *
      * @return Bag
@@ -88,7 +72,7 @@ abstract class BaseTest extends \Orchestra\Testbench\TestCase
     public function newCustomer()
     {
         $cm = new CustomerManager();
-        
+
         $bag = new Bag();
         $bag->set('name', str_random(40));
         $bag->set('notes', str_random(40));
@@ -105,6 +89,7 @@ abstract class BaseTest extends \Orchestra\Testbench\TestCase
     {
         $bag = new Bag();
         $bag->set('name', 'a common name');
+        $bag->set('customer_id', $this->newCustomer()->id);
 
         return $bag;
     }

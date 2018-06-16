@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Railken\Laravel\Manager\Contracts\EntityContract;
 use Illuminate\Support\Facades\Config;
+use Railken\LaraOre\Customer\Customer;
 
 class Contract extends Model implements EntityContract
 {
@@ -17,7 +18,7 @@ class Contract extends Model implements EntityContract
      * @var array
      */
     protected $fillable = [
-        'name',
+        'name', 'customer_id',
     ];
 
     /**
@@ -37,5 +38,13 @@ class Contract extends Model implements EntityContract
         $this->fillable = array_merge($this->fillable, array_keys(Config::get('ore.contract.attributes')));
         $this->table = Config::get('ore.contract.table');
         parent::__construct($attributes);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
     }
 }

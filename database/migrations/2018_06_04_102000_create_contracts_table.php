@@ -17,6 +17,13 @@ class CreateContractsTable extends Migration
         Schema::create(Config::get('ore.contract.table'), function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+
+            foreach (Config::get('ore.contract.attributes') as $name => $attribute) {
+                $table->string($name)->nullable();
+            }
+
+            $table->integer('customer_id')->unsigned();
+            $table->foreign('customer_id')->references('id')->on(Config::get('ore.customer.table'));
             $table->timestamps();
             $table->softDeletes();
         });
