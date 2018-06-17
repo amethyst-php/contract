@@ -96,6 +96,7 @@ abstract class BaseTest extends \Orchestra\Testbench\TestCase
         $bag->set('frequency_value', 10);
         $bag->set('code', str_random(10));
         $bag->set('country', 'IT');
+        $bag->set('locale', 'it_IT');
 
         return $bag;
     }

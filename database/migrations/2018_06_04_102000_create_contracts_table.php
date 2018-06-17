@@ -31,6 +31,7 @@ class CreateContractsTable extends Migration
             $table->string('frequency_unit');
             $table->integer('frequency_value');
             $table->string('country');
+            $table->string('locale');
 
             $table->timestamps();
             $table->softDeletes();

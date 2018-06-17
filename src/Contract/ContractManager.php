@@ -33,7 +33,8 @@ class ContractManager extends ModelManager
         Attributes\FrequencyUnit\FrequencyUnitAttribute::class,
         Attributes\FrequencyValue\FrequencyValueAttribute::class,
         Attributes\Code\CodeAttribute::class,
-        Attributes\Country\CountryAttribute::class
+        Attributes\Country\CountryAttribute::class,
+        Attributes\Locale\LocaleAttribute::class
     ];
 
     /**
