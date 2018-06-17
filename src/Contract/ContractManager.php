@@ -29,7 +29,8 @@ class ContractManager extends ModelManager
         Attributes\CustomerId\CustomerIdAttribute::class,
         Attributes\Price\PriceAttribute::class,
         Attributes\PriceStart\PriceStartAttribute::class,
-        Attributes\PriceEnd\PriceEndAttribute::class
+        Attributes\PriceEnd\PriceEndAttribute::class,
+        Attributes\FrequencyUnit\FrequencyUnitAttribute::class
     ];
 
     /**
