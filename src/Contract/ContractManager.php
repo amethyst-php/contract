@@ -26,7 +26,8 @@ class ContractManager extends ModelManager
         Attributes\CreatedAt\CreatedAtAttribute::class,
         Attributes\UpdatedAt\UpdatedAtAttribute::class,
         Attributes\DeletedAt\DeletedAtAttribute::class,
-        Attributes\CustomerId\CustomerIdAttribute::class
+        Attributes\CustomerId\CustomerIdAttribute::class,
+        Attributes\Price\PriceAttribute::class
     ];
 
     /**

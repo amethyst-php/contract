@@ -89,6 +89,7 @@ abstract class BaseTest extends \Orchestra\Testbench\TestCase
     {
         $bag = new Bag();
         $bag->set('customer_id', $this->newCustomer()->id);
+        $bag->set('price', 20);
 
         return $bag;
     }

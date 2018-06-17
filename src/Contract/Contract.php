@@ -18,7 +18,7 @@ class Contract extends Model implements EntityContract
      * @var array
      */
     protected $fillable = [
-        'customer_id',
+        'customer_id', 'price',
     ];
 
     /**

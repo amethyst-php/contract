@@ -23,6 +23,9 @@ class CreateContractsTable extends Migration
 
             $table->integer('customer_id')->unsigned();
             $table->foreign('customer_id')->references('id')->on(Config::get('ore.customer.table'));
+
+            $table->float('price');
+            
             $table->timestamps();
             $table->softDeletes();
         });
