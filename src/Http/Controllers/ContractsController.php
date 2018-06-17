@@ -33,6 +33,8 @@ class ContractsController extends RestController
         'renewals',
         'starts_at',
         'ends_at',
+        'last_bill_at',
+        'next_bill_at',
         'created_at',
         'updated_at',
     ];
@@ -55,6 +57,8 @@ class ContractsController extends RestController
         'renewals',
         'starts_at',
         'ends_at',
+        'last_bill_at',
+        'next_bill_at',
     ];
 
     /**

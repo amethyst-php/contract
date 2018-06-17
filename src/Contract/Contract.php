@@ -37,6 +37,8 @@ class Contract extends Model implements EntityContract
         'renewals',
         'starts_at',
         'ends_at',
+        'last_bill_at',
+        'next_bill_at',
     ];
 
     /**

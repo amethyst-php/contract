@@ -119,6 +119,8 @@ abstract class BaseTest extends \Orchestra\Testbench\TestCase
         $bag->set('renewals', 0);
         $bag->set('starts_at', '2018-01-01');
         $bag->set('ends_at', '2018-01-01');
+        $bag->set('last_bill_at', '2018-01-01');
+        $bag->set('next_bill_at', '2018-01-01');
 
         return $bag;
     }

@@ -45,6 +45,8 @@ class CreateContractsTable extends Migration
             $table->integer('renewals')->default(0);
             $table->date('starts_at');
             $table->date('ends_at');
+            $table->date('last_bill_at');
+            $table->date('next_bill_at');
 
             $table->timestamps();
             $table->softDeletes();

@@ -42,7 +42,9 @@ class ContractManager extends ModelManager
         Attributes\PaymentMethod\PaymentMethodAttribute::class,
         Attributes\Renewals\RenewalsAttribute::class,
         Attributes\StartsAt\StartsAtAttribute::class,
-        Attributes\EndsAt\EndsAtAttribute::class
+        Attributes\EndsAt\EndsAtAttribute::class,
+        Attributes\LastBillAt\LastBillAtAttribute::class,
+        Attributes\NextBillAt\NextBillAtAttribute::class
     ];
 
     /**
