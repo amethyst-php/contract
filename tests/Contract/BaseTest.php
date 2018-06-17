@@ -81,6 +81,20 @@ abstract class BaseTest extends \Orchestra\Testbench\TestCase
     }
 
     /**
+     * @return \Railken\LaraOre\Tax\Tax
+     */
+    public function newTax()
+    {
+        $am = new TaxManager();
+        $bag = new Bag();
+        $bag->set('name', 'Vat 22%');
+        $bag->set('description', 'Give me');
+        $bag->set('calculator', 'x*0.22');
+
+        return $am->findOrCreate($bag->toArray())->getResource();
+    }
+
+    /**
      * Retrieve correct bag of parameters.
      *
      * @return Bag
@@ -97,6 +111,8 @@ abstract class BaseTest extends \Orchestra\Testbench\TestCase
         $bag->set('code', str_random(10));
         $bag->set('country', 'IT');
         $bag->set('locale', 'it_IT');
+        $bag->set('currency', 'EUR');
+        $bag->set('tax_id', $this->newTax()->id);
 
         return $bag;
     }

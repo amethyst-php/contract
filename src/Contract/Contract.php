@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Railken\Laravel\Manager\Contracts\EntityContract;
 use Illuminate\Support\Facades\Config;
 use Railken\LaraOre\Customer\Customer;
+use Railken\LaraOre\Tax\Tax;
 
 class Contract extends Model implements EntityContract
 {
@@ -18,7 +19,7 @@ class Contract extends Model implements EntityContract
      * @var array
      */
     protected $fillable = [
-        'customer_id', 'price', 'price_start', 'price_end', 'frequency_unit', 'frequency_value', 'code', 'country', 'locale',
+        'customer_id', 'price', 'price_start', 'price_end', 'frequency_unit', 'frequency_value', 'code', 'country', 'locale', 'currency', 'tax_id',
     ];
 
     /**
@@ -46,5 +47,13 @@ class Contract extends Model implements EntityContract
     public function customer()
     {
         return $this->belongsTo(Customer::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function tax()
+    {
+        return $this->belongsTo(Tax::class);
     }
 }

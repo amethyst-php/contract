@@ -32,6 +32,10 @@ class CreateContractsTable extends Migration
             $table->integer('frequency_value');
             $table->string('country');
             $table->string('locale');
+            $table->string('currency');
+            
+            $table->integer('tax_id')->unsigned();
+            $table->foreign('tax_id')->references('id')->on(Config::get('ore.tax.table'));
 
             $table->timestamps();
             $table->softDeletes();
