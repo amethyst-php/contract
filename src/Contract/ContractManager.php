@@ -39,7 +39,8 @@ class ContractManager extends ModelManager
         Attributes\TaxId\TaxIdAttribute::class,
         Attributes\Notes\NotesAttribute::class,
         Attributes\AddressId\AddressIdAttribute::class,
-        Attributes\PaymentMethod\PaymentMethodAttribute::class
+        Attributes\PaymentMethod\PaymentMethodAttribute::class,
+        Attributes\Renewals\RenewalsAttribute::class
     ];
 
     /**

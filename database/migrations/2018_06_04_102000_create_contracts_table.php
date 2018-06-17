@@ -42,6 +42,8 @@ class CreateContractsTable extends Migration
             $table->integer('address_id')->unsigned();
             $table->foreign('address_id')->references('id')->on(Config::get('ore.address.table'));
 
+            $table->integer('renewals')->default(0);
+
             $table->timestamps();
             $table->softDeletes();
         });
