@@ -28,6 +28,7 @@ class CreateContractsTable extends Migration
             $table->float('price_start');
             $table->float('price_end');
             $table->string('frequency_unit');
+            $table->integer('frequency_value');
 
             $table->timestamps();
             $table->softDeletes();

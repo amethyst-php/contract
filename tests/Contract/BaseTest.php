@@ -93,6 +93,7 @@ abstract class BaseTest extends \Orchestra\Testbench\TestCase
         $bag->set('price_start', 20);
         $bag->set('price_end', 10);
         $bag->set('frequency_unit', 'days');
+        $bag->set('frequency_value', 10);
 
         return $bag;
     }

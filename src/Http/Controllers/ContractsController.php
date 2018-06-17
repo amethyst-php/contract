@@ -21,6 +21,7 @@ class ContractsController extends RestController
         'price_start',
         'price_end',
         'frequency_unit',
+        'frequency_value',
         'created_at',
         'updated_at',
     ];
@@ -31,6 +32,7 @@ class ContractsController extends RestController
         'price_start',
         'price_end',
         'frequency_unit',
+        'frequency_value',
     ];
 
     /**
