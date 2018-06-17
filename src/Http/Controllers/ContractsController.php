@@ -18,6 +18,7 @@ class ContractsController extends RestController
         'id',
         'customer_id',
         'price',
+        'price_start',
         'created_at',
         'updated_at',
     ];
@@ -25,6 +26,7 @@ class ContractsController extends RestController
     public $fillable = [
         'customer_id',
         'price',
+        'price_start',
     ];
 
     /**
