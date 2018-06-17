@@ -27,6 +27,7 @@ class ContractsController extends RestController
         'locale',
         'currency',
         'tax_id',
+        'notes',
         'created_at',
         'updated_at',
     ];
@@ -43,6 +44,7 @@ class ContractsController extends RestController
         'locale',
         'currency',
         'tax_id',
+        'notes',
     ];
 
     /**

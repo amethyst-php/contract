@@ -113,6 +113,7 @@ abstract class BaseTest extends \Orchestra\Testbench\TestCase
         $bag->set('locale', 'it_IT');
         $bag->set('currency', 'EUR');
         $bag->set('tax_id', $this->newTax()->id);
+        $bag->set('notes', str_random(40));
 
         return $bag;
     }

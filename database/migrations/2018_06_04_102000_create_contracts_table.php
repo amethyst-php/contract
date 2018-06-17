@@ -33,7 +33,8 @@ class CreateContractsTable extends Migration
             $table->string('country');
             $table->string('locale');
             $table->string('currency');
-            
+            $table->text('notes');
+
             $table->integer('tax_id')->unsigned();
             $table->foreign('tax_id')->references('id')->on(Config::get('ore.tax.table'));
 

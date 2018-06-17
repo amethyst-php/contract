@@ -36,7 +36,8 @@ class ContractManager extends ModelManager
         Attributes\Country\CountryAttribute::class,
         Attributes\Locale\LocaleAttribute::class,
         Attributes\Currency\CurrencyAttribute::class,
-        Attributes\TaxId\TaxIdAttribute::class
+        Attributes\TaxId\TaxIdAttribute::class,
+        Attributes\Notes\NotesAttribute::class
     ];
 
     /**
