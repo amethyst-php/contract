@@ -8,6 +8,7 @@ use Railken\Laravel\Manager\Contracts\EntityContract;
 use Illuminate\Support\Facades\Config;
 use Railken\LaraOre\Customer\Customer;
 use Railken\LaraOre\Tax\Tax;
+use Railken\LaraOre\Address\Address;
 
 class Contract extends Model implements EntityContract
 {
@@ -19,7 +20,19 @@ class Contract extends Model implements EntityContract
      * @var array
      */
     protected $fillable = [
-        'customer_id', 'price', 'price_start', 'price_end', 'frequency_unit', 'frequency_value', 'code', 'country', 'locale', 'currency', 'tax_id', 'notes',
+        'customer_id',
+        'price',
+        'price_start',
+        'price_end',
+        'frequency_unit',
+        'frequency_value',
+        'code',
+        'country',
+        'locale',
+        'currency',
+        'tax_id',
+        'notes',
+        'address_id',
     ];
 
     /**
@@ -55,5 +68,13 @@ class Contract extends Model implements EntityContract
     public function tax()
     {
         return $this->belongsTo(Tax::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function address()
+    {
+        return $this->belongsTo(Address::class);
     }
 }

@@ -38,6 +38,9 @@ class CreateContractsTable extends Migration
             $table->integer('tax_id')->unsigned();
             $table->foreign('tax_id')->references('id')->on(Config::get('ore.tax.table'));
 
+            $table->integer('address_id')->unsigned();
+            $table->foreign('address_id')->references('id')->on(Config::get('ore.address.table'));
+            
             $table->timestamps();
             $table->softDeletes();
         });
