@@ -26,6 +26,7 @@ class CreateContractsTable extends Migration
 
             $table->float('price');
             $table->float('price_start');
+            $table->float('price_end');
 
             $table->timestamps();
             $table->softDeletes();

@@ -19,6 +19,7 @@ class ContractsController extends RestController
         'customer_id',
         'price',
         'price_start',
+        'price_end',
         'created_at',
         'updated_at',
     ];
@@ -27,6 +28,7 @@ class ContractsController extends RestController
         'customer_id',
         'price',
         'price_start',
+        'price_end',
     ];
 
     /**

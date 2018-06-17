@@ -28,7 +28,8 @@ class ContractManager extends ModelManager
         Attributes\DeletedAt\DeletedAtAttribute::class,
         Attributes\CustomerId\CustomerIdAttribute::class,
         Attributes\Price\PriceAttribute::class,
-        Attributes\PriceStart\PriceStartAttribute::class
+        Attributes\PriceStart\PriceStartAttribute::class,
+        Attributes\PriceEnd\PriceEndAttribute::class
     ];
 
     /**
