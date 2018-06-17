@@ -117,6 +117,8 @@ abstract class BaseTest extends \Orchestra\Testbench\TestCase
         $bag->set('address_id', $this->newAddress()->id);
         $bag->set('payment_method', 'iban');
         $bag->set('renewals', 0);
+        $bag->set('starts_at', '2018-01-01');
+        $bag->set('ends_at', '2018-01-01');
 
         return $bag;
     }

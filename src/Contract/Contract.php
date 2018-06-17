@@ -35,6 +35,8 @@ class Contract extends Model implements EntityContract
         'address_id',
         'payment_method',
         'renewals',
+        'starts_at',
+        'ends_at',
     ];
 
     /**

@@ -31,6 +31,8 @@ class ContractsController extends RestController
         'address_id',
         'payment_method',
         'renewals',
+        'starts_at',
+        'ends_at',
         'created_at',
         'updated_at',
     ];
@@ -51,6 +53,8 @@ class ContractsController extends RestController
         'address_id',
         'payment_method',
         'renewals',
+        'starts_at',
+        'ends_at',
     ];
 
     /**

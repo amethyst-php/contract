@@ -40,7 +40,9 @@ class ContractManager extends ModelManager
         Attributes\Notes\NotesAttribute::class,
         Attributes\AddressId\AddressIdAttribute::class,
         Attributes\PaymentMethod\PaymentMethodAttribute::class,
-        Attributes\Renewals\RenewalsAttribute::class
+        Attributes\Renewals\RenewalsAttribute::class,
+        Attributes\StartsAt\StartsAtAttribute::class,
+        Attributes\EndsAt\EndsAtAttribute::class
     ];
 
     /**
