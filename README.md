@@ -20,10 +20,3 @@ composer require railken/lara-ore-contract
 ```
 
 The package will automatically register itself.
-
-
-## Documentation
-
-Demo contract generated
-
-![contract](docs/contract.png)
