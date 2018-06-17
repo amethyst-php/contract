@@ -25,15 +25,15 @@ class CreateContractsTable extends Migration
             $table->integer('customer_id')->unsigned();
             $table->foreign('customer_id')->references('id')->on(Config::get('ore.customer.table'));
 
-            $table->float('price');
-            $table->float('price_start');
-            $table->float('price_end');
+            $table->float('price')->default(0);
+            $table->float('price_start')->default(0);
+            $table->float('price_end')->default(0);
             $table->string('frequency_unit');
             $table->integer('frequency_value');
             $table->string('country');
             $table->string('locale');
             $table->string('currency');
-            $table->text('notes');
+            $table->text('notes')->nullable();
             $table->string('payment_method');
 
             $table->integer('tax_id')->unsigned();
@@ -43,10 +43,10 @@ class CreateContractsTable extends Migration
             $table->foreign('address_id')->references('id')->on(Config::get('ore.address.table'));
 
             $table->integer('renewals')->default(0);
-            $table->date('starts_at');
-            $table->date('ends_at');
-            $table->date('last_bill_at');
-            $table->date('next_bill_at');
+            $table->date('starts_at')->nullable();
+            $table->date('ends_at')->nullable();
+            $table->date('last_bill_at')->nullable();
+            $table->date('next_bill_at')->nullable();
 
             $table->timestamps();
             $table->softDeletes();
