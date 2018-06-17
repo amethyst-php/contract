@@ -23,6 +23,7 @@ class ContractsController extends RestController
         'frequency_unit',
         'frequency_value',
         'code',
+        'country',
         'created_at',
         'updated_at',
     ];
@@ -35,6 +36,7 @@ class ContractsController extends RestController
         'frequency_unit',
         'frequency_value',
         'code',
+        'country',
     ];
 
     /**
