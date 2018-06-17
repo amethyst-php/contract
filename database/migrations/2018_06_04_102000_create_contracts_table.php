@@ -16,6 +16,7 @@ class CreateContractsTable extends Migration
     {
         Schema::create(Config::get('ore.contract.table'), function (Blueprint $table) {
             $table->increments('id');
+            $table->string('code');
 
             foreach (Config::get('ore.contract.attributes') as $name => $attribute) {
                 $table->string($name)->nullable();
