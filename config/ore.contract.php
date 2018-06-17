@@ -8,6 +8,10 @@ return [
 
     ],
 
+    'payment_methods' => [
+        'iban',
+    ],
+
     'router' => [
         'prefix'      => '/admin/contracts',
         'middlewares' => [

@@ -34,13 +34,14 @@ class CreateContractsTable extends Migration
             $table->string('locale');
             $table->string('currency');
             $table->text('notes');
+            $table->string('payment_method');
 
             $table->integer('tax_id')->unsigned();
             $table->foreign('tax_id')->references('id')->on(Config::get('ore.tax.table'));
 
             $table->integer('address_id')->unsigned();
             $table->foreign('address_id')->references('id')->on(Config::get('ore.address.table'));
-            
+
             $table->timestamps();
             $table->softDeletes();
         });

@@ -29,6 +29,7 @@ class ContractsController extends RestController
         'tax_id',
         'notes',
         'address_id',
+        'payment_method',
         'created_at',
         'updated_at',
     ];
@@ -47,6 +48,7 @@ class ContractsController extends RestController
         'tax_id',
         'notes',
         'address_id',
+        'payment_method',
     ];
 
     /**
