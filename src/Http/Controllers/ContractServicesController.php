@@ -4,9 +4,9 @@ namespace Railken\LaraOre\Http\Controllers;
 
 use Railken\LaraOre\Api\Http\Controllers\RestController;
 use Railken\LaraOre\Api\Http\Controllers\Traits as RestTraits;
-use Railken\LaraOre\Contract\ContractManager;
+use Railken\LaraOre\ContractService\ContractServiceManager;
 
-class ContractsController extends RestController
+class ContractServicesController extends RestController
 {
     use RestTraits\RestIndexTrait;
     use RestTraits\RestCreateTrait;
@@ -18,19 +18,16 @@ class ContractsController extends RestController
         'id',
         'code',
         'customer_id',
+        'contract_id',
+        'service_id',
+        'address_id',
         'tax_id',
-        'renewals',
         'frequency_unit',
         'frequency_value',
-        'country',
-        'locale',
-        'currency',
-        'notes',
-        'payment_method',
-        'starts_at',
-        'ends_at',
-        'last_bill_at',
-        'next_bill_at',
+        'price',
+        'price_start',
+        'price_end',
+        'renewals',
         'created_at',
         'updated_at',
     ];
@@ -38,25 +35,22 @@ class ContractsController extends RestController
     public $fillable = [
         'code',
         'customer_id',
+        'contract_id',
+        'service_id',
+        'address_id',
         'tax_id',
-        'renewals',
         'frequency_unit',
         'frequency_value',
-        'country',
-        'locale',
-        'currency',
-        'notes',
-        'payment_method',
-        'starts_at',
-        'ends_at',
-        'last_bill_at',
-        'next_bill_at',
+        'renewals',
+        'price',
+        'price_start',
+        'price_end',
     ];
 
     /**
      * Construct.
      */
-    public function __construct(ContractManager $manager)
+    public function __construct(ContractServiceManager $manager)
     {
         $this->manager = $manager;
         $this->manager->setAgent($this->getUser());

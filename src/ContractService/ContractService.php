@@ -1,6 +1,6 @@
 <?php
 
-namespace Railken\LaraOre\Contract;
+namespace Railken\LaraOre\ContractService;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -8,8 +8,11 @@ use Railken\Laravel\Manager\Contracts\EntityContract;
 use Illuminate\Support\Facades\Config;
 use Railken\LaraOre\Customer\Customer;
 use Railken\LaraOre\Tax\Tax;
+use Railken\LaraOre\Address\Address;
+use Railken\LaraOre\Contract\Contract;
+use Railken\LaraOre\RecurringService\RecurringService;
 
-class Contract extends Model implements EntityContract
+class ContractService extends Model implements EntityContract
 {
     use SoftDeletes;
 
@@ -19,21 +22,14 @@ class Contract extends Model implements EntityContract
      * @var array
      */
     protected $fillable = [
-        'customer_id',
-        'code',
-        'country',
-        'locale',
-        'currency',
-        'tax_id',
-        'notes',
-        'payment_method',
-        'renewals',
-        'starts_at',
-        'ends_at',
+        'price',
+        'price_start',
+        'price_end',
         'frequency_unit',
         'frequency_value',
-        'last_bill_at',
-        'next_bill_at',
+        'renewals',
+        'tax_id',
+        'code',
     ];
 
     /**
@@ -50,8 +46,8 @@ class Contract extends Model implements EntityContract
      */
     public function __construct(array $attributes = [])
     {
-        $this->fillable = array_merge($this->fillable, array_keys(Config::get('ore.contract.attributes')));
-        $this->table = Config::get('ore.contract.table');
+        $this->fillable = array_merge($this->fillable, array_keys(Config::get('ore.contract-service.attributes')));
+        $this->table = Config::get('ore.contract-service.table');
         parent::__construct($attributes);
     }
 
@@ -69,5 +65,29 @@ class Contract extends Model implements EntityContract
     public function tax()
     {
         return $this->belongsTo(Tax::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function address()
+    {
+        return $this->belongsTo(Address::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function contract()
+    {
+        return $this->belongsTo(Contract::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function service()
+    {
+        return $this->belongsTo(RecurringService::class);
     }
 }

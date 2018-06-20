@@ -1,16 +1,16 @@
 <?php
 
-namespace Railken\LaraOre\Tests\Contract;
+namespace Railken\LaraOre\Tests\ContractService;
 
 use Illuminate\Support\Facades\File;
 use Railken\Bag;
 use Railken\LaraOre\Address\AddressManager;
-use Railken\LaraOre\Contract\ContractManager;
 use Railken\LaraOre\Tax\TaxManager;
 use Railken\LaraOre\LegalEntity\LegalEntityManager;
 use Railken\LaraOre\Taxonomy\TaxonomyManager;
 use Railken\LaraOre\Customer\CustomerManager;
 use Railken\LaraOre\RecurringService\RecurringServiceManager;
+use Railken\LaraOre\Contract\ContractManager;
 
 abstract class BaseTest extends \Orchestra\Testbench\TestCase
 {
@@ -86,6 +86,7 @@ abstract class BaseTest extends \Orchestra\Testbench\TestCase
     public function newTax()
     {
         $am = new TaxManager();
+
         $bag = new Bag();
         $bag->set('name', 'Vat 22%');
         $bag->set('description', 'Give me');
@@ -93,14 +94,43 @@ abstract class BaseTest extends \Orchestra\Testbench\TestCase
 
         return $am->findOrCreate($bag->toArray())->getResource();
     }
+    
+    /**
+     * @return \Railken\LaraOre\RecurringService\RecurringService
+     */
+    public function newService()
+    {
+        $m = new RecurringServiceManager();
+
+        $bag = new Bag();
+        $bag->set('name', str_random(40));
+        $bag->set('code', str_random(40));
+        $bag->set('description', str_random(40));
+        $bag->set('notes', str_random(40));
+        $bag->set('country', 'IT');
+        $bag->set('locale', 'it_IT');
+        $bag->set('enabled', true);
+        $bag->set('price_starting', 40);
+        $bag->set('price', 10);
+        $bag->set('price_ending', 10);
+        $bag->set('currency', 'EUR');
+        $bag->set('tax_id', $this->newTax()->id);
+        $bag->set('frequency_unit', 'days');
+        $bag->set('frequency_value', 10);
+
+        return $m->create($bag->toArray())->getResource();
+    }
+
 
     /**
      * Retrieve correct bag of parameters.
      *
-     * @return Bag
+     * @return \Railken\LaraOre\Contract\Contract
      */
-    public function getParameters()
+    public function newContract()
     {
+        $am = new ContractManager();
+
         $bag = new Bag();
         $bag->set('code', str_random(10));
         $bag->set('notes', str_random(40));
@@ -117,6 +147,29 @@ abstract class BaseTest extends \Orchestra\Testbench\TestCase
         $bag->set('ends_at', '2018-01-01');
         $bag->set('last_bill_at', '2018-01-01');
         $bag->set('next_bill_at', '2018-01-01');
+
+        return $am->create($bag->toArray())->getResource();
+    }
+
+    /**
+     * Retrieve correct bag of parameters.
+     *
+     * @return Bag
+     */
+    public function getParameters()
+    {
+        $bag = new Bag();
+        $bag->set('code', str_random(10));
+        $bag->set('contract_id', $this->newContract()->id);
+        $bag->set('tax_id', $this->newTax()->id);
+        $bag->set('address_id', $this->newAddress()->id);
+        $bag->set('service_id', $this->newService()->id);
+        $bag->set('price', 20);
+        $bag->set('price_start', 20);
+        $bag->set('price_end', 10);
+        $bag->set('frequency_unit', 'days');
+        $bag->set('frequency_value', 10);
+        $bag->set('renewals', 0);
 
         return $bag;
     }
