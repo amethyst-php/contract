@@ -61,7 +61,20 @@ class StartsAtAttribute extends BaseAttribute
      */
     public function valid(EntityContract $entity, $value)
     {
-        $d = \DateTime::createFromFormat('Y-m-d', $value);
-        return $d && $d->format('Y-m-d') === $value;
+        return $this->validByFormat($value, 'Y-m-d') || $this->validByFormat($value, 'Y-m-d H:i:s');
+    }
+
+    /**
+     * Validate by format
+     *
+     * @param string $value
+     * @param string $format
+     *
+     * @return boolean
+     */
+    public function validByFormat($value, string $format = 'Y-m-d H:i:s')
+    {
+        $d = \DateTime::createFromFormat($format, $value);
+        return $d && $d->format($format) === $value;
     }
 }

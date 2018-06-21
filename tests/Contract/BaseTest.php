@@ -113,10 +113,10 @@ abstract class BaseTest extends \Orchestra\Testbench\TestCase
         $bag->set('frequency_unit', 'days');
         $bag->set('frequency_value', 10);
         $bag->set('renewals', 0);
-        $bag->set('starts_at', '2018-01-01');
-        $bag->set('ends_at', '2018-01-01');
-        $bag->set('last_bill_at', '2018-01-01');
-        $bag->set('next_bill_at', '2018-01-01');
+        $bag->set('starts_at', '2018-01-01 00:00:00');
+        $bag->set('ends_at', '2018-01-01 00:00:00');
+        $bag->set('last_bill_at', '2018-01-01 00:00:00');
+        $bag->set('next_bill_at', '2018-01-01 00:00:00');
 
         return $bag;
     }

@@ -8,6 +8,7 @@ use Railken\Laravel\Manager\Contracts\EntityContract;
 use Illuminate\Support\Facades\Config;
 use Railken\LaraOre\Customer\Customer;
 use Railken\LaraOre\Tax\Tax;
+use Railken\LaraOre\ContractService\ContractService;
 
 class Contract extends Model implements EntityContract
 {
@@ -41,7 +42,13 @@ class Contract extends Model implements EntityContract
      *
      * @var array
      */
-    protected $dates = ['deleted_at'];
+    protected $dates = [
+        'deleted_at',
+        'last_bill_at',
+        'next_bill_at',
+        'starts_at',
+        'ends_at'
+    ];
 
     /**
      * Creates a new instance of the model.
@@ -69,5 +76,13 @@ class Contract extends Model implements EntityContract
     public function tax()
     {
         return $this->belongsTo(Tax::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function services()
+    {
+        return $this->hasMany(ContractService::class);
     }
 }

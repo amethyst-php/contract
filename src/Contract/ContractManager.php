@@ -6,6 +6,7 @@ use Railken\Laravel\Manager\Contracts\AgentContract;
 use Railken\Laravel\Manager\ModelManager;
 use Railken\Laravel\Manager\Tokens;
 use Illuminate\Support\Facades\Config;
+use Railken\LaraOre\Contract\Issuer\IssuerContract;
 
 class ContractManager extends ModelManager
 {
@@ -66,5 +67,15 @@ class ContractManager extends ModelManager
         $this->setAuthorizer(new ContractAuthorizer($this));
 
         parent::__construct($agent);
+    }
+
+    /**
+     * Bill for a renew
+     *
+     * @param IssuerContract $issuer
+     */
+    public function issue(IssuerContract $issuer)
+    {
+        return $issuer->issue();
     }
 }
