@@ -3,10 +3,8 @@
 namespace Railken\LaraOre\Contract;
 
 use Illuminate\Support\Collection;
-use Railken\Bag;
 use Railken\Laravel\Manager\Contracts\EntityContract;
 use Railken\Laravel\Manager\ModelSerializer;
-use Railken\Laravel\Manager\Tokens;
 
 class ContractSerializer extends ModelSerializer
 {

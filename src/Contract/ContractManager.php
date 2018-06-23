@@ -2,11 +2,11 @@
 
 namespace Railken\LaraOre\Contract;
 
+use Illuminate\Support\Facades\Config;
+use Railken\LaraOre\Contract\Issuer\IssuerContract;
 use Railken\Laravel\Manager\Contracts\AgentContract;
 use Railken\Laravel\Manager\ModelManager;
 use Railken\Laravel\Manager\Tokens;
-use Illuminate\Support\Facades\Config;
-use Railken\LaraOre\Contract\Issuer\IssuerContract;
 
 class ContractManager extends ModelManager
 {
@@ -16,7 +16,7 @@ class ContractManager extends ModelManager
      * @var string
      */
     public $entity = Contract::class;
-    
+
     /**
      * List of all attributes.
      *
@@ -41,7 +41,7 @@ class ContractManager extends ModelManager
         Attributes\StartsAt\StartsAtAttribute::class,
         Attributes\EndsAt\EndsAtAttribute::class,
         Attributes\LastBillAt\LastBillAtAttribute::class,
-        Attributes\NextBillAt\NextBillAtAttribute::class
+        Attributes\NextBillAt\NextBillAtAttribute::class,
     ];
 
     /**
@@ -70,7 +70,7 @@ class ContractManager extends ModelManager
     }
 
     /**
-     * Bill for a renew
+     * Bill for a renew.
      *
      * @param IssuerContract $issuer
      */

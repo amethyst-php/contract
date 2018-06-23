@@ -5,7 +5,6 @@ namespace Railken\LaraOre\ContractService\Attributes\TaxId;
 use Railken\Laravel\Manager\Attributes\BelongsToAttribute;
 use Railken\Laravel\Manager\Contracts\EntityContract;
 use Railken\Laravel\Manager\Tokens;
-use Respect\Validation\Validator as v;
 
 class TaxIdAttribute extends BelongsToAttribute
 {
@@ -86,7 +85,7 @@ class TaxIdAttribute extends BelongsToAttribute
     }
 
     /**
-     * Retrieve default value
+     * Retrieve default value.
      *
      * @param EntityContract $entity
      *

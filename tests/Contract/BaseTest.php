@@ -5,12 +5,9 @@ namespace Railken\LaraOre\Tests\Contract;
 use Illuminate\Support\Facades\File;
 use Railken\Bag;
 use Railken\LaraOre\Address\AddressManager;
-use Railken\LaraOre\Contract\ContractManager;
-use Railken\LaraOre\Tax\TaxManager;
-use Railken\LaraOre\LegalEntity\LegalEntityManager;
-use Railken\LaraOre\Taxonomy\TaxonomyManager;
 use Railken\LaraOre\Customer\CustomerManager;
-use Railken\LaraOre\RecurringService\RecurringServiceManager;
+use Railken\LaraOre\LegalEntity\LegalEntityManager;
+use Railken\LaraOre\Tax\TaxManager;
 
 abstract class BaseTest extends \Orchestra\Testbench\TestCase
 {
@@ -22,10 +19,10 @@ abstract class BaseTest extends \Orchestra\Testbench\TestCase
     }
 
     /**
-        * New LegalEntity
-        *
-        * @return \Railken\LaraOre\LegalEntity\LegalEntity
-        */
+     * New LegalEntity.
+     *
+     * @return \Railken\LaraOre\LegalEntity\LegalEntity
+     */
     public function newLegalEntity()
     {
         $bag = new Bag();
@@ -38,7 +35,7 @@ abstract class BaseTest extends \Orchestra\Testbench\TestCase
         $bag->set('code_it_rea', '123');
         $bag->set('code_it_sia', '123');
         $bag->set('registered_office_address_id', $this->newAddress()->id);
-        
+
         $lem = new LegalEntityManager();
 
         return $lem->create($bag)->getResource();
@@ -77,6 +74,7 @@ abstract class BaseTest extends \Orchestra\Testbench\TestCase
         $bag->set('name', str_random(40));
         $bag->set('notes', str_random(40));
         $bag->set('legal_entity_id', $this->newLegalEntity()->id);
+
         return $cm->create($bag)->getResource();
     }
 
