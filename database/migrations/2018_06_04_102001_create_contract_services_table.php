@@ -41,7 +41,6 @@ class CreateContractServicesTable extends Migration
             $table->float('price_start')->default(0);
             $table->float('price_end')->default(0);
 
-
             $table->timestamps();
             $table->softDeletes();
         });

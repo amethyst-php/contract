@@ -4,11 +4,11 @@ namespace Railken\LaraOre\Contract;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Railken\Laravel\Manager\Contracts\EntityContract;
 use Illuminate\Support\Facades\Config;
+use Railken\LaraOre\ContractService\ContractService;
 use Railken\LaraOre\Customer\Customer;
 use Railken\LaraOre\Tax\Tax;
-use Railken\LaraOre\ContractService\ContractService;
+use Railken\Laravel\Manager\Contracts\EntityContract;
 
 class Contract extends Model implements EntityContract
 {
@@ -47,7 +47,7 @@ class Contract extends Model implements EntityContract
         'last_bill_at',
         'next_bill_at',
         'starts_at',
-        'ends_at'
+        'ends_at',
     ];
 
     /**

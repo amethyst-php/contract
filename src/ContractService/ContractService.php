@@ -4,13 +4,13 @@ namespace Railken\LaraOre\ContractService;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Railken\Laravel\Manager\Contracts\EntityContract;
 use Illuminate\Support\Facades\Config;
-use Railken\LaraOre\Customer\Customer;
-use Railken\LaraOre\Tax\Tax;
 use Railken\LaraOre\Address\Address;
 use Railken\LaraOre\Contract\Contract;
+use Railken\LaraOre\Customer\Customer;
 use Railken\LaraOre\RecurringService\RecurringService;
+use Railken\LaraOre\Tax\Tax;
+use Railken\Laravel\Manager\Contracts\EntityContract;
 
 class ContractService extends Model implements EntityContract
 {

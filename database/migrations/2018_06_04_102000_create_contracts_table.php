@@ -21,14 +21,14 @@ class CreateContractsTable extends Migration
 
             $table->integer('customer_id')->unsigned();
             $table->foreign('customer_id')->references('id')->on(Config::get('ore.customer.table'));
-            
+
             $table->integer('tax_id')->unsigned()->nullable();
             $table->foreign('tax_id')->references('id')->on(Config::get('ore.tax.table'));
 
             $table->string('country');
             $table->string('locale');
             $table->string('currency');
-            
+
             $table->string('payment_method');
 
             $table->string('frequency_unit');

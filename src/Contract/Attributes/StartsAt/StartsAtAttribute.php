@@ -5,7 +5,6 @@ namespace Railken\LaraOre\Contract\Attributes\StartsAt;
 use Railken\Laravel\Manager\Attributes\BaseAttribute;
 use Railken\Laravel\Manager\Contracts\EntityContract;
 use Railken\Laravel\Manager\Tokens;
-use Respect\Validation\Validator as v;
 
 class StartsAtAttribute extends BaseAttribute
 {
@@ -65,16 +64,17 @@ class StartsAtAttribute extends BaseAttribute
     }
 
     /**
-     * Validate by format
+     * Validate by format.
      *
      * @param string $value
      * @param string $format
      *
-     * @return boolean
+     * @return bool
      */
     public function validByFormat($value, string $format = 'Y-m-d H:i:s')
     {
         $d = \DateTime::createFromFormat($format, $value);
+
         return $d && $d->format($format) === $value;
     }
 }
