@@ -2,10 +2,10 @@
 
 namespace Railken\LaraOre\ContractService;
 
+use Illuminate\Support\Facades\Config;
 use Railken\Laravel\Manager\Contracts\AgentContract;
 use Railken\Laravel\Manager\ModelManager;
 use Railken\Laravel\Manager\Tokens;
-use Illuminate\Support\Facades\Config;
 
 class ContractServiceManager extends ModelManager
 {
@@ -15,7 +15,7 @@ class ContractServiceManager extends ModelManager
      * @var string
      */
     public $entity = ContractService::class;
-    
+
     /**
      * List of all attributes.
      *

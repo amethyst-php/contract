@@ -5,7 +5,6 @@ namespace Railken\LaraOre\ContractService\Attributes\ServiceId;
 use Railken\Laravel\Manager\Attributes\BelongsToAttribute;
 use Railken\Laravel\Manager\Contracts\EntityContract;
 use Railken\Laravel\Manager\Tokens;
-use Respect\Validation\Validator as v;
 
 class ServiceIdAttribute extends BelongsToAttribute
 {
