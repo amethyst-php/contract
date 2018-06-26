@@ -29,10 +29,10 @@ class ContractServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         $this->loadRoutes();
 
-        /*config(['ore.user.permission.managers' => array_merge(Config::get('ore.user.permission.managers'), [
+        config(['ore.permission.managers' => array_merge(Config::get('ore.permission.managers', []), [
             \Railken\LaraOre\Contract\ContractManager::class,
-            \Railken\LaraOre\ContractItem\ContractItemManager::class,
-        ])]);*/
+            \Railken\LaraOre\ContractService\ContractServiceManager::class,
+        ])]);
     }
 
     /**
