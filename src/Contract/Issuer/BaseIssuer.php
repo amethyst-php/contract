@@ -48,8 +48,6 @@ class BaseIssuer implements IssuerContract
      * Issue invoice.
      *
      * @param Invoice $invoice
-     *
-     * @return void
      */
     public function issueInvoice($invoice)
     {
@@ -135,8 +133,6 @@ class BaseIssuer implements IssuerContract
 
     /**
      * Validate.
-     *
-     * @return void
      */
     public function validate()
     {
@@ -157,8 +153,6 @@ class BaseIssuer implements IssuerContract
 
     /**
      * Issue.
-     *
-     * @return void
      */
     public function issue()
     {
@@ -190,7 +184,7 @@ class BaseIssuer implements IssuerContract
         $contract->next_bill_at = $next;
 
         $this->issueInvoice($invoice);
-        $contract->renewals++;
+        ++$contract->renewals;
         $contract->save();
     }
 }

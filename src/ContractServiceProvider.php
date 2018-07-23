@@ -2,6 +2,7 @@
 
 namespace Railken\LaraOre;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 use Railken\LaraOre\Api\Support\Router;
@@ -11,8 +12,6 @@ class ContractServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.
-     *
-     * @return void
      */
     public function boot(\Illuminate\Routing\Router $router)
     {
@@ -37,8 +36,6 @@ class ContractServiceProvider extends ServiceProvider
 
     /**
      * Register any application services.
-     *
-     * @return void
      */
     public function register()
     {
@@ -47,7 +44,6 @@ class ContractServiceProvider extends ServiceProvider
         $this->app->register(\Railken\LaraOre\UserServiceProvider::class);
         $this->app->register(\Railken\LaraOre\TaxonomyServiceProvider::class);
         $this->app->register(\Railken\LaraOre\LegalEntityServiceProvider::class);
-        $this->app->register(\Railken\LaraOre\ListenerServiceProvider::class);
         $this->app->register(\Railken\LaraOre\TaxServiceProvider::class);
         $this->app->register(\Railken\LaraOre\RecurringServiceServiceProvider::class);
         $this->app->register(\Railken\LaraOre\CustomerServiceProvider::class);
@@ -57,29 +53,35 @@ class ContractServiceProvider extends ServiceProvider
 
     /**
      * Load routes.
-     *
-     * @return void
      */
     public function loadRoutes()
     {
-        Router::group(array_merge(Config::get('ore.contract.router'), [
-            'namespace' => 'Railken\LaraOre\Http\Controllers',
-        ]), function ($router) {
-            $router->get('/', ['uses' => 'ContractsController@index']);
-            $router->post('/', ['uses' => 'ContractsController@create']);
-            $router->put('/{id}', ['uses' => 'ContractsController@update']);
-            $router->delete('/{id}', ['uses' => 'ContractsController@remove']);
-            $router->get('/{id}', ['uses' => 'ContractsController@show']);
-        });
+        $config = Config::get('ore.contract.http.admin');
 
-        Router::group(array_merge(Config::get('ore.contract-service.router'), [
-            'namespace' => 'Railken\LaraOre\Http\Controllers',
-        ]), function ($router) {
-            $router->get('/', ['uses' => 'ContractServicesController@index']);
-            $router->post('/', ['uses' => 'ContractServicesController@create']);
-            $router->put('/{id}', ['uses' => 'ContractServicesController@update']);
-            $router->delete('/{id}', ['uses' => 'ContractServicesController@remove']);
-            $router->get('/{id}', ['uses' => 'ContractServicesController@show']);
-        });
+        if (Arr::get($config, 'enabled')) {
+            Router::group('admin', Arr::get($config, 'router'), function ($router) use ($config) {
+                $controller = Arr::get($config, 'controller');
+
+                $router->get('/', ['uses' => $controller.'@index']);
+                $router->post('/', ['uses' => $controller.'@create']);
+                $router->put('/{id}', ['uses' => $controller.'@update']);
+                $router->delete('/{id}', ['uses' => $controller.'@remove']);
+                $router->get('/{id}', ['uses' => $controller.'@show']);
+            });
+        }
+
+        $config = Config::get('ore.contract-service.http.admin');
+
+        if (Arr::get($config, 'enabled')) {
+            Router::group('admin', Arr::get($config, 'router'), function ($router) use ($config) {
+                $controller = Arr::get($config, 'controller');
+
+                $router->get('/', ['uses' => $controller.'@index']);
+                $router->post('/', ['uses' => $controller.'@create']);
+                $router->put('/{id}', ['uses' => $controller.'@update']);
+                $router->delete('/{id}', ['uses' => $controller.'@remove']);
+                $router->get('/{id}', ['uses' => $controller.'@show']);
+            });
+        }
     }
 }

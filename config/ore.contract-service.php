@@ -1,18 +1,26 @@
 <?php
 
 return [
-
     'table' => 'ore_contract_services',
 
     'attributes' => [
-
     ],
 
-    'router' => [
-        'prefix'      => '/admin/contract-services',
-        'middlewares' => [
-            \Railken\LaraOre\RequestLoggerMiddleware::class,
-            'auth:api',
+    /*
+    |--------------------------------------------------------------------------
+    | Http configuration
+    |--------------------------------------------------------------------------
+    |
+    | Here you may configure the routes
+    |
+    */
+    'http' => [
+        'admin' => [
+            'enabled'    => true,
+            'controller' => Railken\LaraOre\Http\Controllers\Admin\ContractServicesController::class,
+            'router'     => [
+                'prefix'      => '/admin/contract-services',
+            ],
         ],
     ],
 ];
