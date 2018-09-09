@@ -46,6 +46,7 @@ class ContractServiceProvider extends ServiceProvider
         $this->app->register(\Railken\LaraOre\LegalEntityServiceProvider::class);
         $this->app->register(\Railken\LaraOre\TaxServiceProvider::class);
         $this->app->register(\Railken\LaraOre\RecurringServiceServiceProvider::class);
+        $this->app->register(\Railken\LaraOre\InvoiceServiceProvider::class);
         $this->app->register(\Railken\LaraOre\CustomerServiceProvider::class);
         $this->mergeConfigFrom(__DIR__.'/../config/ore.contract.php', 'ore.contract');
         $this->mergeConfigFrom(__DIR__.'/../config/ore.contract-service.php', 'ore.contract-service');
