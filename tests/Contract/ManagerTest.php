@@ -2,6 +2,7 @@
 
 namespace Railken\LaraOre\Tests\Contract;
 
+use Railken\LaraOre\Contract\ContractFaker;
 use Railken\LaraOre\Contract\ContractManager;
 use Railken\LaraOre\Support\Testing\ManagerTestableTrait;
 
@@ -21,6 +22,6 @@ class ManagerTest extends BaseTest
 
     public function testSuccessCommon()
     {
-        $this->commonTest(new ContractManager(), $this->getParameters());
+        $this->commonTest(new ContractManager(), ContractFaker::make()->parameters());
     }
 }

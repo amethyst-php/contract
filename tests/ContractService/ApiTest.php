@@ -3,45 +3,31 @@
 namespace Railken\LaraOre\Tests\ContractService;
 
 use Illuminate\Support\Facades\Config;
-use Railken\LaraOre\Api\Support\Testing\TestableTrait;
+use Railken\LaraOre\Api\Support\Testing\TestableBaseTrait;
+use Railken\LaraOre\ContractService\ContractServiceFaker;
 
 class ApiTest extends BaseTest
 {
-    use TestableTrait;
+    use TestableBaseTrait;
 
     /**
-     * Retrieve basic url.
+     * Faker class.
      *
-     * @return string
+     * @var string
      */
-    public function getBaseUrl()
-    {
-        return Config::get('ore.api.http.admin.router.prefix').Config::get('ore.contract-service.http.admin.router.prefix');
-    }
+    protected $faker = ContractServiceFaker::class;
 
     /**
-     * Test common requests.
+     * Router group resource.
+     *
+     * @var string
      */
-    public function testSuccessCommon()
-    {
-        $this->commonTest($this->getBaseUrl(), $parameters = $this->getParameters());
-    }
+    protected $group = 'admin';
 
     /**
-     * Test common requests.
+     * Base path config.
+     *
+     * @var string
      */
-    public function testCreateWithoutParams()
-    {
-        $this->commonTest(
-            $this->getBaseUrl(),
-            $this->getParameters()
-            ->remove('price')
-            ->remove('price_start')
-            ->remove('price_end')
-            ->remove('frequency_unit')
-            ->remove('frequency_value')
-            ->remove('tax_id')
-            ->remove('code')
-        );
-    }
+    protected $config = 'ore.contract-service';
 }

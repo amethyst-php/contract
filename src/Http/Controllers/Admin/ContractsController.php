@@ -38,7 +38,9 @@ class ContractsController extends RestController
     public $fillable = [
         'code',
         'customer_id',
+        'customer',
         'tax_id',
+        'tax',
         'renewals',
         'frequency_unit',
         'frequency_value',

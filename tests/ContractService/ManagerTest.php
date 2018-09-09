@@ -2,6 +2,7 @@
 
 namespace Railken\LaraOre\Tests\ContractService;
 
+use Railken\LaraOre\ContractService\ContractServiceFaker;
 use Railken\LaraOre\ContractService\ContractServiceManager;
 use Railken\LaraOre\Support\Testing\ManagerTestableTrait;
 
@@ -21,21 +22,6 @@ class ManagerTest extends BaseTest
 
     public function testSuccessCommon()
     {
-        $this->commonTest($this->getManager(), $this->getParameters());
-    }
-
-    public function testCreateWithoutParams()
-    {
-        $this->commonTest(
-            $this->getManager(),
-            $this->getParameters()
-            ->remove('price')
-            ->remove('price_start')
-            ->remove('price_end')
-            ->remove('frequency_unit')
-            ->remove('frequency_value')
-            ->remove('tax_id')
-            ->remove('code')
-        );
+        $this->commonTest($this->getManager(), ContractServiceFaker::make()->parameters());
     }
 }
