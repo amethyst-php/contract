@@ -16,6 +16,7 @@
         "railken/lara-ore-tax": "dev-master",
         "railken/lara-ore-customer": "dev-master",
         "railken/lara-ore-recurring-service": "dev-master",
+        "railken/lara-ore-catalogue": "dev-master",
         "league/iso3166": "^2.1",
         "mossadal/math-parser": "^1.3",
         "moneyphp/money": "^3.1"

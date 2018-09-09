@@ -26,11 +26,6 @@ abstract class BaseTest extends \Orchestra\Testbench\TestCase
         $this->artisan('migrate:fresh');
         $this->artisan('lara-ore:user:install');
 
-        $this->artisan('vendor:publish', [
-            '--provider' => 'Railken\LaraOre\ContractServiceProvider',
-            '--force'    => 'true',
-        ]);
-
         $this->artisan('migrate');
     }
 

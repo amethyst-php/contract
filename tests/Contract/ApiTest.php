@@ -3,11 +3,11 @@
 namespace Railken\LaraOre\Tests\Contract;
 
 use Illuminate\Support\Facades\Config;
-use Railken\LaraOre\Support\Testing\ApiTestableTrait;
+use Railken\LaraOre\Api\Support\Testing\TestableTrait;
 
 class ApiTest extends BaseTest
 {
-    use ApiTestableTrait;
+    use TestableTrait;
 
     /**
      * Retrieve basic url.
@@ -16,7 +16,7 @@ class ApiTest extends BaseTest
      */
     public function getBaseUrl()
     {
-        return Config::get('ore.api.router.prefix').Config::get('ore.contract.http.admin.router.prefix');
+        return Config::get('ore.api.http.admin.router.prefix').Config::get('ore.contract.http.admin.router.prefix');
     }
 
     /**

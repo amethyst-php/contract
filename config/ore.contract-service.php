@@ -19,7 +19,7 @@ return [
             'enabled'    => true,
             'controller' => Railken\LaraOre\Http\Controllers\Admin\ContractServicesController::class,
             'router'     => [
-                'prefix'      => '/admin/contract-services',
+                'prefix'      => '/contract-services',
             ],
         ],
     ],
