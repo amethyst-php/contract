@@ -1,74 +1,23 @@
 <?php
 
-namespace Railken\LaraOre\Http\Controllers\Admin;
+namespace Railken\Amethyst\Http\Controllers\Admin;
 
-use Railken\LaraOre\Api\Http\Controllers\RestController;
-use Railken\LaraOre\Api\Http\Controllers\Traits as RestTraits;
-use Railken\LaraOre\ContractService\ContractServiceManager;
+use Railken\Amethyst\Api\Http\Controllers\RestManagerController;
+use Railken\Amethyst\Api\Http\Controllers\Traits as RestTraits;
+use Railken\Amethyst\Managers\ContractServiceManager;
 
-class ContractServicesController extends RestController
+class ContractServicesController extends RestManagerController
 {
     use RestTraits\RestIndexTrait;
+    use RestTraits\RestShowTrait;
     use RestTraits\RestCreateTrait;
     use RestTraits\RestUpdateTrait;
-    use RestTraits\RestShowTrait;
     use RestTraits\RestRemoveTrait;
 
-    public $queryable = [
-        'id',
-        'code',
-        'customer_id',
-        'contract_id',
-        'service_id',
-        'address_id',
-        'tax_id',
-        'frequency_unit',
-        'frequency_value',
-        'price',
-        'price_start',
-        'price_end',
-        'renewals',
-        'created_at',
-        'updated_at',
-    ];
-
-    public $fillable = [
-        'code',
-        'customer_id',
-        'customer',
-        'contract_id',
-        'contract',
-        'service_id',
-        'service',
-        'address_id',
-        'address',
-        'tax_id',
-        'tax',
-        'frequency_unit',
-        'frequency_value',
-        'renewals',
-        'price',
-        'price_start',
-        'price_end',
-    ];
-
     /**
-     * Construct.
-     */
-    public function __construct(ContractServiceManager $manager)
-    {
-        $this->manager = $manager;
-        $this->manager->setAgent($this->getUser());
-        parent::__construct();
-    }
-
-    /**
-     * Create a new instance for query.
+     * The class of the manager.
      *
-     * @return \Illuminate\Database\Query\Builder
+     * @var string
      */
-    public function getQuery()
-    {
-        return $this->manager->repository->getQuery();
-    }
+    public $class = ContractServiceManager::class;
 }

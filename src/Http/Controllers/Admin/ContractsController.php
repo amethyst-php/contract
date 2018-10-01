@@ -1,77 +1,23 @@
 <?php
 
-namespace Railken\LaraOre\Http\Controllers\Admin;
+namespace Railken\Amethyst\Http\Controllers\Admin;
 
-use Railken\LaraOre\Api\Http\Controllers\RestController;
-use Railken\LaraOre\Api\Http\Controllers\Traits as RestTraits;
-use Railken\LaraOre\Contract\ContractManager;
+use Railken\Amethyst\Api\Http\Controllers\RestManagerController;
+use Railken\Amethyst\Api\Http\Controllers\Traits as RestTraits;
+use Railken\Amethyst\Managers\ContractManager;
 
-class ContractsController extends RestController
+class ContractsController extends RestManagerController
 {
     use RestTraits\RestIndexTrait;
+    use RestTraits\RestShowTrait;
     use RestTraits\RestCreateTrait;
     use RestTraits\RestUpdateTrait;
-    use RestTraits\RestShowTrait;
     use RestTraits\RestRemoveTrait;
 
-    public $queryable = [
-        'id',
-        'code',
-        'customer_id',
-        'tax_id',
-        'renewals',
-        'frequency_unit',
-        'frequency_value',
-        'country',
-        'locale',
-        'currency',
-        'notes',
-        'payment_method',
-        'starts_at',
-        'ends_at',
-        'last_bill_at',
-        'next_bill_at',
-        'created_at',
-        'updated_at',
-    ];
-
-    public $fillable = [
-        'code',
-        'customer_id',
-        'customer',
-        'tax_id',
-        'tax',
-        'renewals',
-        'frequency_unit',
-        'frequency_value',
-        'country',
-        'locale',
-        'currency',
-        'notes',
-        'payment_method',
-        'starts_at',
-        'ends_at',
-        'last_bill_at',
-        'next_bill_at',
-    ];
-
     /**
-     * Construct.
-     */
-    public function __construct(ContractManager $manager)
-    {
-        $this->manager = $manager;
-        $this->manager->setAgent($this->getUser());
-        parent::__construct();
-    }
-
-    /**
-     * Create a new instance for query.
+     * The class of the manager.
      *
-     * @return \Illuminate\Database\Query\Builder
+     * @var string
      */
-    public function getQuery()
-    {
-        return $this->manager->repository->getQuery();
-    }
+    public $class = ContractManager::class;
 }
