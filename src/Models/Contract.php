@@ -52,12 +52,4 @@ class Contract extends Model implements EntityContract
     {
         return $this->belongsTo(Tax::class);
     }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function services()
-    {
-        return $this->hasMany(ContractService::class);
-    }
 }

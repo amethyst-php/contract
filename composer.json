@@ -7,7 +7,7 @@
         "railken/amethyst-common": "0.1.*",
         "railken/amethyst-customer" : "0.1.*",
         "railken/amethyst-tax" : "0.1.*",
-        "railken/amethyst-recurring-service" : "0.1.*",
+        "railken/amethyst-sellable-product-catalogue" : "0.1.*",
         "railken/amethyst-address" : "0.1.*",
         "railken/amethyst-invoice" : "0.1.*"
     },

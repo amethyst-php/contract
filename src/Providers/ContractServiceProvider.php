@@ -15,7 +15,7 @@ class ContractServiceProvider extends CommonServiceProvider
 
         $this->app->register(\Railken\Amethyst\Providers\AddressServiceProvider::class);
         $this->app->register(\Railken\Amethyst\Providers\TaxServiceProvider::class);
-        $this->app->register(\Railken\Amethyst\Providers\RecurringServiceServiceProvider::class);
+        $this->app->register(\Railken\Amethyst\Providers\SellableProductCatalogueServiceProvider::class);
         $this->app->register(\Railken\Amethyst\Providers\CustomerServiceProvider::class);
         $this->app->register(\Railken\Amethyst\Providers\InvoiceServiceProvider::class);
     }

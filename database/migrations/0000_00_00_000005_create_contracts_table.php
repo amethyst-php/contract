@@ -40,36 +40,6 @@ class CreateContractsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
-
-        Schema::create(Config::get('amethyst.contract.managers.contract-service.table'), function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('code');
-
-            $table->integer('customer_id')->unsigned();
-            $table->foreign('customer_id')->references('id')->on(Config::get('amethyst.customer.managers.customer.table'));
-
-            $table->integer('tax_id')->unsigned()->nullable();
-            $table->foreign('tax_id')->references('id')->on(Config::get('amethyst.tax.managers.tax.table'));
-
-            $table->integer('address_id')->unsigned();
-            $table->foreign('address_id')->references('id')->on(Config::get('amethyst.address.managers.address.table'));
-
-            $table->integer('contract_id')->unsigned();
-            $table->foreign('contract_id')->references('id')->on(Config::get('amethyst.contract.managers.contract.table'));
-
-            $table->integer('service_id')->unsigned();
-            $table->foreign('service_id')->references('id')->on(Config::get('amethyst.recurring-service.managers.recurring-service.table'));
-
-            $table->string('frequency_unit');
-            $table->integer('frequency_value');
-            $table->integer('renewals')->default(0);
-
-            $table->float('price')->default(0);
-            $table->float('price_start')->default(0);
-            $table->float('price_end')->default(0);
-            $table->timestamps();
-            $table->softDeletes();
-        });
     }
 
     /**
