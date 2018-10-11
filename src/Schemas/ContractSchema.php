@@ -4,6 +4,7 @@ namespace Railken\Amethyst\Schemas;
 
 use Illuminate\Support\Facades\Config;
 use Railken\Amethyst\Attributes as AmethystAttributes;
+use Railken\Amethyst\Managers\AddressManager;
 use Railken\Amethyst\Managers\CustomerManager;
 use Railken\Amethyst\Managers\TaxManager;
 use Railken\Lem\Attributes;
@@ -24,20 +25,19 @@ class ContractSchema extends Schema
                 ->setRequired(true)
                 ->setUnique(true),
             Attributes\LongTextAttribute::make('notes'),
+            Attributes\BooleanAttribute::make('enabled'),
             AmethystAttributes\CountryAttribute::make('country'),
             AmethystAttributes\Invoice\CurrencyAttribute::make('currency'),
             AmethystAttributes\Invoice\LocaleAttribute::make('locale'),
-            Attributes\LongTextAttribute::make('description'),
-            Attributes\BooleanAttribute::make('enabled'),
-            Attributes\NumberAttribute::make('price_starting'),
-            Attributes\NumberAttribute::make('price'),
-            Attributes\NumberAttribute::make('price_ending'),
             Attributes\BelongsToAttribute::make('tax_id')
                 ->setRelationName('tax')
                 ->setRelationManager(TaxManager::class),
             Attributes\BelongsToAttribute::make('customer_id')
                 ->setRelationName('customer')
                 ->setRelationManager(CustomerManager::class),
+            Attributes\BelongsToAttribute::make('address_id')
+                ->setRelationName('address')
+                ->setRelationManager(AddressManager::class),
             Attributes\EnumAttribute::make('frequency_unit', ['hours', 'days', 'weeks', 'months', 'years']),
             Attributes\NumberAttribute::make('frequency_value'),
             Attributes\DateTimeAttribute::make('last_bill_at'),

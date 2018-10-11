@@ -8,7 +8,7 @@ use Railken\Amethyst\Contracts\IssuerContract;
 use Railken\Amethyst\Managers\InvoiceItemManager;
 use Railken\Amethyst\Managers\InvoiceManager;
 use Railken\Amethyst\Models\Contract;
-use Railken\Amethyst\Models\ContractService;
+use Railken\Amethyst\Models\ContractProduct;
 use Railken\Amethyst\Models\Invoice;
 use Railken\Amethyst\Models\InvoiceItem;
 
@@ -76,58 +76,42 @@ class BaseIssuer implements IssuerContract
     }
 
     /**
-     * Calculate an approximation of "per single price day".
-     *
-     * @param ContractService $service
-     *
-     * @return float
-     */
-    public function calculateSinglePriceDay(ContractService $service)
-    {
-        if ($service->frequency_unit === 'days') {
-            return $service->price;
-        }
-
-        if ($service->frequency_unit === 'weeks') {
-            return $service->price / 7;
-        }
-
-        if ($service->frequency_unit === 'months') {
-            return $service->price / 30;
-        }
-
-        if ($service->frequency_unit === 'years') {
-            return $service->price / 365;
-        }
-    }
-
-    /**
      * @param Invoice         $invoice
-     * @param ContractService $service
+     * @param ContractProduct $product
      * @param DateInterval    $diff
      *
      * @return InvoiceItem
      */
-    public function createInvoiceItem(Invoice $invoice, ContractService $service, DateInterval $diff)
+    public function createInvoiceItem(Invoice $invoice, ContractProduct $product, DateInterval $diff)
     {
         $manager = new InvoiceItemManager();
         $contract = $this->contract;
 
-        // Service has always the same frequency_unit and the result must be always be without rest
-        $ratio = $service->contract->frequency_value / $service->frequency_value;
-        $price = $service->price * $ratio;
+        $price_rule = $product->sellable_catalogue->price_rule;
 
-        $single_day = $this->calculateSinglePriceDay($service);
+        // This should be handled as subscription
+        if ($price_rule->class_name instanceof \Railken\Amethyst\PriceRules\FrequencyPriceRule) {
+        }
+
+        // This should be handled as subscription
+        if ($price_rule->class_name instanceof \Railken\Amethyst\PriceRules\FrequencyPriceRule) {
+        }
+
+        // Product has always the same frequency_unit and the result must be always be without rest
+        $ratio = $product->contract->frequency_value / $product->sellable_catalogue->price_rule->frequency_value;
+        $price = $product->price * $ratio;
+
+        $single_day = $this->calculateSinglePriceDay($product);
 
         $price = round($price + $diff->days * $single_day, 2, PHP_ROUND_HALF_UP);
 
         return $manager->createOrFail([
-            'name'        => $service->code,
+            'name'        => $product->code,
             'unit_name'   => 'u',
             'description' => '/',
             'quantity'    => 1,
             'price'       => (string) $price,
-            'tax_id'      => $service->tax->id,
+            'tax_id'      => $product->tax->id,
             'invoice_id'  => $invoice->id,
         ]);
     }
@@ -175,8 +159,8 @@ class BaseIssuer implements IssuerContract
 
         $invoice = $this->createInvoice();
 
-        foreach ($contract->services as $service) {
-            $this->createInvoiceItem($invoice, $service, $diff);
+        foreach ($contract->products as $product) {
+            $this->createInvoiceItem($invoice, $product, $diff);
         }
 
         $next = $this->today()->modify(sprintf('+ %s %s', $contract->frequency_value, $contract->frequency_unit));

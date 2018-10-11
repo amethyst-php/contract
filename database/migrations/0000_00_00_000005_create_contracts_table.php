@@ -40,6 +40,17 @@ class CreateContractsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+
+        Schema::create(Config::get('amethyst.contract.managers.contract-product.table'), function (Blueprint $table) {
+            $table->increments('id');
+
+            $table->integer('contract_id')->unsigned();
+            $table->foreign('contract_id')->references('id')->on(Config::get('amethyst.contract.managers.contract.table'));
+            $table->integer('sellable_product_catalogue_id')->unsigned();
+            $table->foreign('sellable_product_catalogue_id')->references('id')->on(Config::get('amethyst.sellable-product-catalogue.managers.sellable-product-catalogue.table'));
+            $table->timestamps();
+            $table->softDeletes();
+        });
     }
 
     /**
@@ -48,5 +59,6 @@ class CreateContractsTable extends Migration
     public function down()
     {
         Schema::dropIfExists(Config::get('amethyst.contract.managers.contract.table'));
+        Schema::dropIfExists(Config::get('amethyst.contract.managers.contract-product.table'));
     }
 }
