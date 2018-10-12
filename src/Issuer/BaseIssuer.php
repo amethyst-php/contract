@@ -93,7 +93,7 @@ class BaseIssuer implements IssuerContract
             'description' => $item->get('notes'),
             'quantity'    => 1,
             'price'       => round($item->get('price'), 2, PHP_ROUND_HALF_UP),
-            // 'tax_id'      => $product->tax->id,
+            'tax_id'      => $item->get('sellable')->tax->id,
             'invoice_id'  => $invoice->id,
         ])->getResource();
     }
