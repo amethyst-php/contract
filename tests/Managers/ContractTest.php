@@ -25,12 +25,4 @@ class ContractTest extends BaseTest
      * @var string
      */
     protected $faker = ContractFaker::class;
-
-    /**
-     * Test issuer.
-     */
-    public function testIssuer()
-    {
-        // (new BaseIssuer($this->getManager()->createOrFail(ContractFaker::make()->parameters())->getResource()))->issue();
-    }
 }

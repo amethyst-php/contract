@@ -29,8 +29,6 @@ class CreateContractsTable extends Migration
 
             $table->string('payment_method');
 
-            $table->string('frequency_unit');
-            $table->integer('frequency_value');
             $table->integer('renewals')->default(0);
 
             $table->date('starts_at')->nullable();
@@ -46,8 +44,15 @@ class CreateContractsTable extends Migration
 
             $table->integer('contract_id')->unsigned();
             $table->foreign('contract_id')->references('id')->on(Config::get('amethyst.contract.managers.contract.table'));
-            $table->integer('sellable_product_catalogue_id')->unsigned();
-            $table->foreign('sellable_product_catalogue_id')->references('id')->on(Config::get('amethyst.sellable-product-catalogue.managers.sellable-product-catalogue.table'));
+            $table->integer('catalogue_id')->unsigned();
+            $table->foreign('catalogue_id')->references('id')->on(Config::get('amethyst.catalogue.managers.catalogue.table'));
+            $table->integer('product_id')->unsigned();
+            $table->foreign('product_id')->references('id')->on(Config::get('amethyst.product.managers.product.table'));
+            $table->integer('renewals')->default(0);
+            $table->date('starts_at')->nullable();
+            $table->date('ends_at')->nullable();
+            $table->date('last_bill_at')->nullable();
+            $table->date('next_bill_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

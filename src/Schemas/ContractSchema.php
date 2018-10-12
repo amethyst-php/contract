@@ -38,8 +38,6 @@ class ContractSchema extends Schema
             Attributes\BelongsToAttribute::make('address_id')
                 ->setRelationName('address')
                 ->setRelationManager(AddressManager::class),
-            Attributes\EnumAttribute::make('frequency_unit', ['hours', 'days', 'weeks', 'months', 'years']),
-            Attributes\NumberAttribute::make('frequency_value'),
             Attributes\DateTimeAttribute::make('last_bill_at'),
             Attributes\DateTimeAttribute::make('next_bill_at'),
             Attributes\DateTimeAttribute::make('starts_at'),
