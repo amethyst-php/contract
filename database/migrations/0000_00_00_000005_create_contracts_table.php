@@ -17,6 +17,9 @@ class CreateContractsTable extends Migration
             $table->string('code');
             $table->text('notes')->nullable();
 
+            $table->integer('address_id')->unsigned();
+            $table->foreign('address_id')->references('id')->on(Config::get('amethyst.address.managers.address.table'));
+
             $table->integer('customer_id')->unsigned();
             $table->foreign('customer_id')->references('id')->on(Config::get('amethyst.customer.managers.customer.table'));
 

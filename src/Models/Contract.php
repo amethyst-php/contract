@@ -48,6 +48,14 @@ class Contract extends Model implements EntityContract
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
+    public function address()
+    {
+        return $this->belongsTo(Address::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function tax()
     {
         return $this->belongsTo(Tax::class);

@@ -165,6 +165,7 @@ class BaseIssuer implements IssuerContract
                 $items->push(new Bag([
                     'price'    => $rule->calculate($price_rule, $sellableProductCatalogue->price),
                     'sellable' => $sellableProductCatalogue,
+                    'product'  => $contractProduct,
                     'notes'    => $this->getLabelOneTimeProduct($contractProduct, $sellableProductCatalogue),
                 ]));
             }
@@ -218,6 +219,7 @@ class BaseIssuer implements IssuerContract
                 $items->push(new Bag([
                     'price'    => $price,
                     'sellable' => $sellableProductCatalogue,
+                    'product'  => $contractProduct,
                     'notes'    => $this->getLabelFullCycleRecurringProduct($contractProduct, $sellableProductCatalogue),
                 ]));
             }
@@ -299,9 +301,15 @@ class BaseIssuer implements IssuerContract
 
             foreach ($items as $item) {
                 $invoiceItem = $this->createInvoiceItem($invoice, $item);
+
+                $item->get('product')->last_bill_at = new \DateTime();
+                ++$item->get('product')->renewals;
+                $item->get('product')->save();
             }
 
             $this->issueInvoice($invoice);
+            $contract->last_bill_at = new \DateTime();
+            $contract->save();
 
             return $invoice;
         }
