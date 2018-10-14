@@ -43,7 +43,7 @@ class ContractSchema extends Schema
             Attributes\DateTimeAttribute::make('starts_at'),
             Attributes\DateTimeAttribute::make('ends_at'),
             Attributes\NumberAttribute::make('renewals'),
-            Attributes\EnumAttribute::make('payment_method', Config::get('amethyst.contract.managers.contract.payment_methods')),
+            Attributes\EnumAttribute::make('payment_method', Config::get('amethyst.contract.data.contract.payment_methods')),
             Attributes\CreatedAtAttribute::make(),
             Attributes\UpdatedAtAttribute::make(),
             Attributes\DeletedAtAttribute::make(),

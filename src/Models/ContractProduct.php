@@ -5,37 +5,25 @@ namespace Railken\Amethyst\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Config;
+use Railken\Amethyst\Common\ConfigurableModel;
 use Railken\Amethyst\Schemas\ContractProductSchema;
 use Railken\Lem\Contracts\EntityContract;
 
 class ContractProduct extends Model implements EntityContract
 {
-    use SoftDeletes;
+    use SoftDeletes, ConfigurableModel;
 
     /**
-     * The attributes that should be mutated to dates.
-     *
-     * @var array
-     */
-    protected $dates = [
-        'deleted_at',
-        'last_bill_at',
-        'next_bill_at',
-        'starts_at',
-        'ends_at',
-    ];
-
-    /**
-     * Creates a new instance of the model.
+     * Create a new Eloquent model instance.
      *
      * @param array $attributes
      */
     public function __construct(array $attributes = [])
     {
+        $this->ini('amethyst.contract.data.contract-product');
         parent::__construct($attributes);
-        $this->table = Config::get('amethyst.contract.managers.contract-product.table');
-        $this->fillable = (new ContractProductSchema())->getNameFillableAttributes();
     }
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

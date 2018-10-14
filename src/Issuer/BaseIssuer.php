@@ -72,7 +72,7 @@ class BaseIssuer implements IssuerContract
     {
         $tm = new TaxonomyManager();
 
-        return $tm->findOrCreate(['name' => Config::get('amethyst.invoice.managers.invoice-item.unit_taxonomy')])->getResource();
+        return $tm->findOrCreate(['name' => Config::get('amethyst.invoice.data.invoice-item.unit_taxonomy')])->getResource();
     }
 
     /**

@@ -2,23 +2,16 @@
 
 namespace Railken\Amethyst\Managers;
 
+use Railken\Amethyst\Common\ConfigurableManager;
 use Illuminate\Support\Facades\Config;
 use Railken\Lem\Manager;
 
 class ContractProductManager extends Manager
 {
-    /**
-     * Describe this manager.
-     *
-     * @var string
-     */
-    public $comment = '...';
+    use ConfigurableManager;
 
     /**
-     * Register Classes.
+     * @var string
      */
-    public function registerClasses()
-    {
-        return Config::get('amethyst.contract.managers.contract-product');
-    }
+    protected $config = 'amethyst.contract.data.contract-product';
 }
