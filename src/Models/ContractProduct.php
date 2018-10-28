@@ -4,9 +4,7 @@ namespace Railken\Amethyst\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\Config;
 use Railken\Amethyst\Common\ConfigurableModel;
-use Railken\Amethyst\Schemas\ContractProductSchema;
 use Railken\Lem\Contracts\EntityContract;
 
 class ContractProduct extends Model implements EntityContract
@@ -23,7 +21,6 @@ class ContractProduct extends Model implements EntityContract
         $this->ini('amethyst.contract.data.contract-product');
         parent::__construct($attributes);
     }
-
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

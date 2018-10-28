@@ -109,6 +109,7 @@ class BaseIssuerTest extends BaseTest
         $issuer = new BaseIssuer();
 
         $items = $issuer->getItemsToIssue($target, $contract);
+
         $this->assertEquals(2, $items->count());
         $this->assertEquals(80.00, $items->get(0)->get('price'));
         $this->assertEquals(20, $items->get(1)->get('price'));

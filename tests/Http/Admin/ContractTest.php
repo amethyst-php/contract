@@ -25,9 +25,9 @@ class ContractTest extends BaseTest
     protected $group = 'admin';
 
     /**
-     * Base path config.
+     * Route name.
      *
      * @var string
      */
-    protected $config = 'amethyst.contract.http.admin.contract';
+    protected $route = 'admin.contract';
 }

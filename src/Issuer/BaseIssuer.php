@@ -6,6 +6,7 @@ use DateTime;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
 use Railken\Amethyst\Contracts\IssuerContract;
+use Railken\Amethyst\Managers\InvoiceContainerManager;
 use Railken\Amethyst\Managers\InvoiceItemManager;
 use Railken\Amethyst\Managers\InvoiceManager;
 use Railken\Amethyst\Managers\SellableProductCatalogueManager;
@@ -13,6 +14,7 @@ use Railken\Amethyst\Managers\TaxonomyManager;
 use Railken\Amethyst\Models\Contract;
 use Railken\Amethyst\Models\ContractProduct;
 use Railken\Amethyst\Models\Invoice;
+use Railken\Amethyst\Models\InvoiceContainer;
 use Railken\Amethyst\Models\InvoiceItem;
 use Railken\Amethyst\Models\LegalEntity;
 use Railken\Amethyst\Models\SellableProductCatalogue;
@@ -76,24 +78,41 @@ class BaseIssuer implements IssuerContract
     }
 
     /**
-     * @param Invoice $invoice
-     * @param mixed   $item
+     * @param Invoice          $invoice
+     * @param InvoiceContainer $invoiceContainer
+     * @param mixed            $item
      *
      * @return InvoiceItem
      */
-    public function createInvoiceItem(Invoice $invoice, $item)
+    public function createInvoiceItem(Invoice $invoice, InvoiceContainer $invoiceContainer, $item)
     {
         $manager = new InvoiceItemManager();
 
         $tm = new TaxonomyManager();
 
         return $manager->createOrFail([
-            'name'        => $item->get('sellable')->product->code,
-            'unit_id'     => $tm->findOrCreate(['name' => 'u', 'parent_id' => $this->getParentInvoiceUnit()->id])->getResource()->id,
-            'description' => $item->get('notes'),
-            'quantity'    => 1,
-            'price'       => round($item->get('price'), 2, PHP_ROUND_HALF_UP),
-            'tax_id'      => $item->get('sellable')->tax->id,
+            'name'                 => $item->get('sellable')->product->code,
+            'unit_id'              => $tm->findOrCreate(['name' => 'u', 'parent_id' => $this->getParentInvoiceUnit()->id])->getResource()->id,
+            'description'          => $item->get('notes'),
+            'quantity'             => 1,
+            'price'                => round($item->get('price'), 2, PHP_ROUND_HALF_UP),
+            'tax_id'               => $item->get('sellable')->tax->id,
+            'invoice_id'           => $invoice->id,
+            'invoice_container_id' => $invoiceContainer->id,
+        ])->getResource();
+    }
+
+    /**
+     * @param Invoice $invoice
+     *
+     * @return InvoiceItem
+     */
+    public function createInvoiceContainer(Invoice $invoice)
+    {
+        $manager = new InvoiceContainerManager();
+
+        return $manager->createOrFail([
+            'name'        => 'All products',
             'invoice_id'  => $invoice->id,
         ])->getResource();
     }
@@ -120,7 +139,6 @@ class BaseIssuer implements IssuerContract
     /**
      * @param ContractProduct          $product
      * @param SellableProductCatalogue $sellableProductCatalogue
-     * @param int                      $time
      *
      * @return string
      */
@@ -158,7 +176,7 @@ class BaseIssuer implements IssuerContract
 
         // This product should be handled has one-time product. Bill immediately if the renewals is 0
         if ($rule instanceof \Railken\Amethyst\PriceRules\BasePriceRule) {
-            if ($contractProduct->renewals === 0) {
+            if (intval($contractProduct->renewals) === 0) {
                 // $contractProduct->renewals = 1;
                 // $contractProduct->save();
 
@@ -300,7 +318,8 @@ class BaseIssuer implements IssuerContract
             $invoice = $this->createInvoice($sender, $contract);
 
             foreach ($items as $item) {
-                $invoiceItem = $this->createInvoiceItem($invoice, $item);
+                $invoiceContainer = $this->createInvoiceContainer($invoice);
+                $invoiceItem = $this->createInvoiceItem($invoice, $invoiceContainer, $item);
 
                 $item->get('product')->last_bill_at = new \DateTime();
                 ++$item->get('product')->renewals;
