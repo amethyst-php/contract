@@ -54,9 +54,9 @@ class BaseConsumer implements IssuerContract
         if ($rule instanceof \Railken\Amethyst\ConsumeRules\BaseConsumeRule) {
             if (intval($contractProduct->renewals) === 0) {
                 $items->push(new Bag([
-                    'sellable_product' => $sellableProductCatalogue,
+                    'sellable_product'  => $sellableProductCatalogue,
                     'contract_product'  => $contractProduct,
-                    'value'    => $rule->calculate($consume_rule),
+                    'value'             => $rule->calculate($consume_rule),
                 ]));
             }
         }
@@ -112,9 +112,9 @@ class BaseConsumer implements IssuerContract
 
             if ($value) {
                 $items->push(new Bag([
-                    'sellable_product' => $sellableProductCatalogue,
+                    'sellable_product'  => $sellableProductCatalogue,
                     'contract_product'  => $contractProduct,
-                    'value'    => $value,
+                    'value'             => $value,
                 ]));
             }
         }
@@ -123,7 +123,7 @@ class BaseConsumer implements IssuerContract
     }
 
     /**
-     * @param Target   $target
+     * @param Target          $target
      * @param ContractProduct $product
      *
      * @return InvoiceItem
@@ -180,7 +180,7 @@ class BaseConsumer implements IssuerContract
                 $cpm->createOrFail([
                     'contract_product_id' => $item->get('contract_product')->id,
                     'sellable_product_id' => $item->get('sellable_product')->id,
-                    'value'      => $item->get('value'),
+                    'value'               => $item->get('value'),
                 ]);
             }
         }

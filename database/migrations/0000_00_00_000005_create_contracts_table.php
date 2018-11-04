@@ -38,6 +38,7 @@ class CreateContractsTable extends Migration
             $table->date('ends_at')->nullable();
             $table->date('last_bill_at')->nullable();
             $table->date('next_bill_at')->nullable();
+            $table->string('status')->default('pending');
             $table->timestamps();
             $table->softDeletes();
         });

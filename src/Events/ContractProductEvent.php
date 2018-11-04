@@ -2,15 +2,15 @@
 
 namespace Railken\Amethyst\Events;
 
-use Railken\Amethyst\Models\ContractProduct;
 use Illuminate\Queue\SerializesModels;
+use Railken\Amethyst\Models\ContractProduct;
 
 abstract class ContractProductEvent
 {
     use SerializesModels;
 
     /**
-     * @var \Railken\Amethyst\Models\ContractProduct $contractProduct
+     * @var \Railken\Amethyst\Models\ContractProduct
      */
     public $contractProduct;
 

@@ -12,6 +12,11 @@ use Railken\Lem\Schema;
 
 class ContractSchema extends Schema
 {
+    public const STATUS_PENDING = 'pending';
+    public const STATUS_STARTED = 'started';
+    public const STATUS_SUSPENDED = 'suspended';
+    public const STATUS_TERMINATED = 'terminated';
+
     /**
      * Get all the attributes.
      *
@@ -44,6 +49,12 @@ class ContractSchema extends Schema
             Attributes\DateTimeAttribute::make('ends_at'),
             Attributes\NumberAttribute::make('renewals'),
             Attributes\EnumAttribute::make('payment_method', Config::get('amethyst.contract.data.contract.payment_methods')),
+            Attributes\EnumAttribute::make('status', [
+                static::STATUS_PENDING,
+                static::STATUS_STARTED,
+                static::STATUS_SUSPENDED,
+                static::STATUS_TERMINATED,
+            ]),
             Attributes\CreatedAtAttribute::make(),
             Attributes\UpdatedAtAttribute::make(),
             Attributes\DeletedAtAttribute::make(),

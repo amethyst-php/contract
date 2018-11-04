@@ -3,7 +3,6 @@
 namespace Railken\Amethyst\Tests\Issuers;
 
 use Railken\Amethyst\Consumers\BaseConsumer;
-use Railken\Amethyst\ConsumeRules\BaseConsumeRule;
 use Railken\Amethyst\ConsumeRules\FrequencyConsumeRule;
 use Railken\Amethyst\Fakers\CatalogueFaker;
 use Railken\Amethyst\Fakers\ContractFaker;
@@ -101,7 +100,6 @@ class BaseIssuerTest extends BaseTest
         $contract = $cm->getRepository()->findOneById($contract->id);
 
         $consumer = new BaseConsumer();
-
 
         // Attiva in data x
         // Sospendi in data x
