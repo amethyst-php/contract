@@ -2,6 +2,8 @@
 
 namespace Railken\Amethyst\Schemas;
 
+use Illuminate\Support\Facades\Config;
+use Railken\Amethyst\Attributes as AmethystAttributes;
 use Railken\Amethyst\Managers\CatalogueManager;
 use Railken\Amethyst\Managers\ContractManager;
 use Railken\Amethyst\Managers\ProductManager;
@@ -28,11 +30,15 @@ class ContractProductSchema extends Schema
             Attributes\BelongsToAttribute::make('product_id')
                 ->setRelationName('product')
                 ->setRelationManager(ProductManager::class),
+            AmethystAttributes\TaxonomyAttribute::make('group_id', Config::get('amethyst.contract.data.contract-product.group-taxonomy'))
+                ->setRelationName('group'),
             Attributes\DateTimeAttribute::make('last_bill_at'),
             Attributes\DateTimeAttribute::make('next_bill_at'),
             Attributes\DateTimeAttribute::make('starts_at'),
             Attributes\DateTimeAttribute::make('ends_at'),
             Attributes\NumberAttribute::make('renewals'),
+            Attributes\BooleanAttribute::make('active'),
+            Attributes\BooleanAttribute::make('recurrent'),
             Attributes\CreatedAtAttribute::make(),
             Attributes\UpdatedAtAttribute::make(),
             Attributes\DeletedAtAttribute::make(),

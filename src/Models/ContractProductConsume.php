@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Railken\Amethyst\Common\ConfigurableModel;
 use Railken\Lem\Contracts\EntityContract;
 
-class ContractProduct extends Model implements EntityContract
+class ContractProductConsume extends Model implements EntityContract
 {
     use SoftDeletes, ConfigurableModel;
 
@@ -18,39 +18,23 @@ class ContractProduct extends Model implements EntityContract
      */
     public function __construct(array $attributes = [])
     {
-        $this->ini('amethyst.contract.data.contract-product');
+        $this->ini('amethyst.contract.data.contract-product-consume');
         parent::__construct($attributes);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function contract()
+    public function contract_product()
     {
-        return $this->belongsTo(Contract::class);
+        return $this->belongsTo(ContractProduct::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function catalogue()
+    public function sellable_product()
     {
-        return $this->belongsTo(Catalogue::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function product()
-    {
-        return $this->belongsTo(Product::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function group()
-    {
-        return $this->belongsTo(Taxonomy::class);
+        return $this->belongsTo(SellableProductCatalogue::class);
     }
 }

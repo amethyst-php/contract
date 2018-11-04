@@ -51,11 +51,28 @@ class CreateContractsTable extends Migration
             $table->foreign('catalogue_id')->references('id')->on(Config::get('amethyst.catalogue.data.catalogue.table'));
             $table->integer('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on(Config::get('amethyst.product.data.product.table'));
+            $table->integer('group_id')->unsigned();
+            $table->foreign('group_id')->references('id')->on(Config::get('amethyst.taxonomy.data.taxonomy.table'));
             $table->integer('renewals')->default(0);
             $table->date('starts_at')->nullable();
             $table->date('ends_at')->nullable();
             $table->date('last_bill_at')->nullable();
             $table->date('next_bill_at')->nullable();
+            $table->boolean('active');
+            $table->boolean('recurrent');
+            $table->timestamps();
+            $table->softDeletes();
+        });
+
+        Schema::create(Config::get('amethyst.contract.data.contract-product-consume.table'), function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('contract_product_id')->unsigned();
+            $table->foreign('contract_product_id')->references('id')->on(Config::get('amethyst.contract.data.contract-product.table'));
+            $table->integer('sellable_product_id')->unsigned();
+            $table->foreign('sellable_product_id')->references('id')->on(Config::get('amethyst.sellable-product-catalogue.data.sellable-product-catalogue.table'));
+            $table->boolean('value');
+            $table->text('notes')->nullable();
+            $table->timestamp('billed_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -68,5 +85,6 @@ class CreateContractsTable extends Migration
     {
         Schema::dropIfExists(Config::get('amethyst.contract.data.contract.table'));
         Schema::dropIfExists(Config::get('amethyst.contract.data.contract-product.table'));
+        Schema::dropIfExists(Config::get('amethyst.contract.data.contract-product-consume.table'));
     }
 }

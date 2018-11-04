@@ -2,6 +2,9 @@
 
 namespace Railken\Amethyst\Tests\Issuers;
 
+use Railken\Amethyst\Consumers\BaseConsumer;
+use Railken\Amethyst\ConsumeRules\BaseConsumeRule;
+use Railken\Amethyst\ConsumeRules\FrequencyConsumeRule;
 use Railken\Amethyst\Fakers\CatalogueFaker;
 use Railken\Amethyst\Fakers\ContractFaker;
 use Railken\Amethyst\Fakers\ContractProductFaker;
@@ -18,7 +21,6 @@ use Railken\Amethyst\Managers\ProductManager;
 use Railken\Amethyst\Managers\SellableProductCatalogueManager;
 use Railken\Amethyst\Managers\TargetManager;
 use Railken\Amethyst\PriceRules\BasePriceRule;
-use Railken\Amethyst\PriceRules\FrequencyPriceRule;
 use Railken\Amethyst\Tests\BaseTest;
 
 class BaseIssuerTest extends BaseTest
@@ -50,17 +52,8 @@ class BaseIssuerTest extends BaseTest
                 ->set('name', 'Customers')
         )->getResource();
 
-        // The price for the activation of the product
         // Indicate the price of the product we're selling
         $spcm = new SellableProductCatalogueManager();
-        $product1ActivationService = $spcm->createOrFail(
-            SellableProductCatalogueFaker::make()->parameters()
-                ->remove('catalogue')->set('catalogue_id', $catalogue->id)
-                ->remove('product')->set('product_id', $product->id)
-                ->set('price_rule.class_name', BasePriceRule::class)
-                ->set('price', 80.00)
-                ->remove('target')->set('target_id', $target->id)
-        )->getResource();
 
         // The price for the subscription of the product
         // Indicate the price of the product we're selling
@@ -68,8 +61,9 @@ class BaseIssuerTest extends BaseTest
             SellableProductCatalogueFaker::make()->parameters()
                 ->remove('catalogue')->set('catalogue_id', $catalogue->id)
                 ->remove('product')->set('product_id', $product->id)
-                ->set('price_rule.class_name', FrequencyPriceRule::class)
-                ->set('price_rule.payload', [
+                ->set('price_rule.class_name', BasePriceRule::class)
+                ->set('consume_rule.class_name', FrequencyConsumeRule::class)
+                ->set('consume_rule.payload', [
                     'frequency_unit'  => 'months',
                     'frequency_value' => '1',
                 ])
@@ -106,41 +100,32 @@ class BaseIssuerTest extends BaseTest
         // Refresh relations
         $contract = $cm->getRepository()->findOneById($contract->id);
 
-        $issuer = new BaseIssuer();
+        $consumer = new BaseConsumer();
 
-        $items = $issuer->getItemsToIssue($target, $contract);
 
-        $this->assertEquals(2, $items->count());
-        $this->assertEquals(80.00, $items->get(0)->get('price'));
-        $this->assertEquals(20, $items->get(1)->get('price'));
+        // Attiva in data x
+        // Sospendi in data x
+        // Riattiva in data x
+        // Disattiva in data x
 
-        // Change starts_at to make it 75 days
-        // This way well'get a 15 OneTime + 60 subscription
-        $contractProduct->starts_at = (new \DateTime())->modify('-2 month')->modify('-15 days');
-        $contractProduct->save();
-        $contract = $cm->getRepository()->findOneById($contract->id);
+        // Only one item should be consumed (the recurring one)
+        $items = $consumer->getItemsToConsume($target, $contract);
 
-        $items = $issuer->getItemsToIssue($target, $contract);
-        $this->assertEquals(2, $items->count());
-        $this->assertEquals(80.00, $items->get(0)->get('price'));
-        $this->assertEquals(40, $items->get(1)->get('price'));
+        $this->assertEquals(1, $items->count());
+        $this->assertEquals(1, $items->get(0)->get('value'));
 
-        // Change frequency_value to 2
-        $price_rule = $product1BilledMonthly->price_rule;
-        $price_rule->payload = [
-            'frequency_value' => 2,
-            'frequency_unit'  => 'months',
-        ];
-        $price_rule->save();
-        $contract = $cm->getRepository()->findOneById($contract->id);
+        $consumer->consume($target, $contract);
 
-        $items = $issuer->getItemsToIssue($target, $contract);
-        $this->assertEquals(2, $items->count());
+        /*$issuer = new BaseIssuer();
+
+        $items = $issuer->getItemsToIssue($target, $contract)
+
         $this->assertEquals(80.00, $items->get(0)->get('price'));
         $this->assertEquals(20, $items->get(1)->get('price'));
 
         $sender = (new LegalEntityManager())->createOrFail(LegalEntityFaker::make()->parameters())->getResource();
         $invoice = $issuer->issue($sender, $target, $contract);
         $this->assertEquals(2, $invoice->items->count());
+        */
     }
 }
