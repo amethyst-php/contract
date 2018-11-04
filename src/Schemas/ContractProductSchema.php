@@ -12,6 +12,11 @@ use Railken\Lem\Schema;
 
 class ContractProductSchema extends Schema
 {
+    public const STATUS_PENDING = 'pending';
+    public const STATUS_STARTED = 'started';
+    public const STATUS_SUSPENDED = 'suspended';
+    public const STATUS_TERMINATED = 'terminated';
+
     /**
      * Get all the attributes.
      *
@@ -39,6 +44,12 @@ class ContractProductSchema extends Schema
             Attributes\NumberAttribute::make('renewals'),
             Attributes\BooleanAttribute::make('active'),
             Attributes\BooleanAttribute::make('recurrent'),
+            Attributes\EnumAttribute::make('status', [
+                static::STATUS_PENDING,
+                static::STATUS_STARTED,
+                static::STATUS_SUSPENDED,
+                static::STATUS_TERMINATED,
+            ]),
             Attributes\CreatedAtAttribute::make(),
             Attributes\UpdatedAtAttribute::make(),
             Attributes\DeletedAtAttribute::make(),

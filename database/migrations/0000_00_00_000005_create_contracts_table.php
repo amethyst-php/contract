@@ -61,6 +61,7 @@ class CreateContractsTable extends Migration
             $table->date('next_bill_at')->nullable();
             $table->boolean('active');
             $table->boolean('recurrent');
+            $table->string('status')->default('pending');
             $table->timestamps();
             $table->softDeletes();
         });
