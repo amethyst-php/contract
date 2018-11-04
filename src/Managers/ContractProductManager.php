@@ -19,73 +19,77 @@ class ContractProductManager extends Manager
     protected $config = 'amethyst.contract.data.contract-product';
 
     /**
-     * @param \Railken\Amethyst\Models\ContractProduct $contract
+     * @param \Railken\Amethyst\Models\ContractProduct $contractProduct
      *
      * @return Result
      */
-    public function start(ContractProduct $contract)
+    public function start(ContractProduct $contractProduct)
     {
-        $contract->status = ContractProductSchema::STATUS_STARTED;
-        $contract->save();
+        $contractProduct->status = ContractProductSchema::STATUS_STARTED;
+        $contractProduct->started_at = new \DateTime();
+        $contractProduct->save();
 
-        event(new Events\ContractProductStarted($contract));
+        event(new Events\ContractProductStarted($contractProduct));
 
         $result = new Result();
-        $result->getResources()->push($contract);
+        $result->getResources()->push($contractProduct);
 
         return $result;
     }
 
     /**
-     * @param \Railken\Amethyst\Models\ContractProduct $contract
+     * @param \Railken\Amethyst\Models\ContractProduct $contractProduct
      *
      * @return Result
      */
-    public function suspend(ContractProduct $contract)
+    public function suspend(ContractProduct $contractProduct)
     {
-        $contract->status = ContractProductSchema::STATUS_SUSPENDED;
-        $contract->save();
+        $contractProduct->status = ContractProductSchema::STATUS_SUSPENDED;
+        $contractProduct->suspended_at = new \DateTime();
+        $contractProduct->save();
 
-        event(new Events\ContractProductSuspended($contract));
+        event(new Events\ContractProductSuspended($contractProduct));
 
         $result = new Result();
-        $result->getResources()->push($contract);
+        $result->getResources()->push($contractProduct);
 
         return $result;
     }
 
     /**
-     * @param \Railken\Amethyst\Models\ContractProduct $contract
+     * @param \Railken\Amethyst\Models\ContractProduct $contractProduct
      *
      * @return Result
      */
-    public function resume(ContractProduct $contract)
+    public function resume(ContractProduct $contractProduct)
     {
-        $contract->status = ContractProductSchema::STATUS_STARTED;
-        $contract->save();
+        $contractProduct->status = ContractProductSchema::STATUS_STARTED;
+        $contractProduct->started_at = new \DateTime();
+        $contractProduct->save();
 
-        event(new Events\ContractProductResumed($contract));
+        event(new Events\ContractProductResumed($contractProduct));
 
         $result = new Result();
-        $result->getResources()->push($contract);
+        $result->getResources()->push($contractProduct);
 
         return $result;
     }
 
     /**
-     * @param \Railken\Amethyst\Models\ContractProduct $contract
+     * @param \Railken\Amethyst\Models\ContractProduct $contractProduct
      *
      * @return Result
      */
-    public function terminate(ContractProduct $contract)
+    public function terminate(ContractProduct $contractProduct)
     {
-        $contract->status = ContractProductSchema::STATUS_TERMINATED;
-        $contract->save();
+        $contractProduct->status = ContractProductSchema::STATUS_TERMINATED;
+        $contractProduct->terminated_at = new \DateTime();
+        $contractProduct->save();
 
-        event(new Events\ContractProductTerminated($contract));
+        event(new Events\ContractProductTerminated($contractProduct));
 
         $result = new Result();
-        $result->getResources()->push($contract);
+        $result->getResources()->push($contractProduct);
 
         return $result;
     }

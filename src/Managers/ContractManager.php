@@ -26,6 +26,7 @@ class ContractManager extends Manager
     public function start(Contract $contract)
     {
         $contract->status = ContractSchema::STATUS_STARTED;
+        $contract->started_at = new \DateTime();
         $contract->save();
 
         event(new Events\ContractStarted($contract));
@@ -44,6 +45,7 @@ class ContractManager extends Manager
     public function suspend(Contract $contract)
     {
         $contract->status = ContractSchema::STATUS_SUSPENDED;
+        $contract->suspended_at = new \DateTime();
         $contract->save();
 
         event(new Events\ContractSuspended($contract));
@@ -62,6 +64,7 @@ class ContractManager extends Manager
     public function resume(Contract $contract)
     {
         $contract->status = ContractSchema::STATUS_STARTED;
+        $contract->started_at = new \DateTime();
         $contract->save();
 
         event(new Events\ContractResumed($contract));
@@ -80,6 +83,7 @@ class ContractManager extends Manager
     public function terminate(Contract $contract)
     {
         $contract->status = ContractSchema::STATUS_TERMINATED;
+        $contract->terminated_at = new \DateTime();
         $contract->save();
 
         event(new Events\ContractTerminated($contract));

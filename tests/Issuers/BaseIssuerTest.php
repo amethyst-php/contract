@@ -76,10 +76,6 @@ class BaseIssuerTest extends BaseTest
         $contract = $cm->createOrFail(
             ContractFaker::make()->parameters()
                 ->set('renewals', 0)
-                ->set('starts_at', (new \DateTime())->modify('-1 month'))
-                ->set('ends_at', null)
-                ->set('last_bill_at', null)
-                ->set('next_bill_at', null)
         )->getResource();
 
         // Add the product to the contract
@@ -90,10 +86,6 @@ class BaseIssuerTest extends BaseTest
                 ->remove('contract')->set('contract_id', $contract->id)
                 ->remove('catalogue')->set('catalogue_id', $catalogue->id)
                 ->remove('product')->set('product_id', $product->id)
-                ->set('starts_at', (new \DateTime())->modify('-1 month'))
-                ->set('ends_at', null)
-                ->set('last_bill_at', null)
-                ->set('next_bill_at', null)
         )->getResource();
 
         // Refresh relations
@@ -107,6 +99,12 @@ class BaseIssuerTest extends BaseTest
         // Disattiva in data x
 
         // Only one item should be consumed (the recurring one)
+
+        // Start contract and relative products
+        $cm->start($contract);
+        $cpm->start($contract->products[0]);
+
+
         $items = $consumer->getItemsToConsume($target, $contract);
 
         $this->assertEquals(1, $items->count());
@@ -114,16 +112,13 @@ class BaseIssuerTest extends BaseTest
 
         $consumer->consume($target, $contract);
 
-        /*$issuer = new BaseIssuer();
+        $issuer = new BaseIssuer();
 
-        $items = $issuer->getItemsToIssue($target, $contract)
-
-        $this->assertEquals(80.00, $items->get(0)->get('price'));
-        $this->assertEquals(20, $items->get(1)->get('price'));
+        $items = $issuer->getItemsToIssue($contract);
 
         $sender = (new LegalEntityManager())->createOrFail(LegalEntityFaker::make()->parameters())->getResource();
-        $invoice = $issuer->issue($sender, $target, $contract);
-        $this->assertEquals(2, $invoice->items->count());
-        */
+        $invoice = $issuer->issue($sender, $contract);
+        $this->assertEquals(1, $invoice->items->count());
+        
     }
 }

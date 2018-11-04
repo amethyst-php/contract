@@ -32,12 +32,10 @@ class CreateContractsTable extends Migration
 
             $table->string('payment_method');
 
-            $table->integer('renewals')->default(0);
 
-            $table->date('starts_at')->nullable();
-            $table->date('ends_at')->nullable();
-            $table->date('last_bill_at')->nullable();
-            $table->date('next_bill_at')->nullable();
+            $table->date('started_at')->nullable();
+            $table->date('suspended_at')->nullable();
+            $table->date('terminated_at')->nullable();
             $table->string('status')->default('pending');
             $table->timestamps();
             $table->softDeletes();
@@ -54,13 +52,11 @@ class CreateContractsTable extends Migration
             $table->foreign('product_id')->references('id')->on(Config::get('amethyst.product.data.product.table'));
             $table->integer('group_id')->unsigned();
             $table->foreign('group_id')->references('id')->on(Config::get('amethyst.taxonomy.data.taxonomy.table'));
-            $table->integer('renewals')->default(0);
-            $table->date('starts_at')->nullable();
-            $table->date('ends_at')->nullable();
-            $table->date('last_bill_at')->nullable();
-            $table->date('next_bill_at')->nullable();
-            $table->boolean('active');
-            $table->boolean('recurrent');
+
+            $table->date('started_at')->nullable();
+            $table->date('suspended_at')->nullable();
+            $table->date('terminated_at')->nullable();
+            
             $table->string('status')->default('pending');
             $table->timestamps();
             $table->softDeletes();
@@ -68,6 +64,8 @@ class CreateContractsTable extends Migration
 
         Schema::create(Config::get('amethyst.contract.data.contract-product-consume.table'), function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('contract_id')->unsigned();
+            $table->foreign('contract_id')->references('id')->on(Config::get('amethyst.contract.data.contract.table'));
             $table->integer('contract_product_id')->unsigned();
             $table->foreign('contract_product_id')->references('id')->on(Config::get('amethyst.contract.data.contract-product.table'));
             $table->integer('sellable_product_id')->unsigned();

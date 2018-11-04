@@ -33,6 +33,14 @@ class ContractProductConsume extends Model implements EntityContract
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
+    public function contract()
+    {
+        return $this->belongsTo(Contract::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function sellable_product()
     {
         return $this->belongsTo(SellableProductCatalogue::class);

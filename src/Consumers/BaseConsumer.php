@@ -12,6 +12,7 @@ use Railken\Amethyst\Models\InvoiceItem;
 use Railken\Amethyst\Models\SellableProductCatalogue;
 use Railken\Amethyst\Models\Target;
 use Railken\Bag;
+use Railken\Amethyst\Schemas\ContractSchema;
 
 class BaseConsumer implements IssuerContract
 {
@@ -105,10 +106,19 @@ class BaseConsumer implements IssuerContract
                 'contract_product_id' => $contractProduct->id,
             ])->orderBy('created_at', 'DESC')->first();
 
-            $now = new \DateTime();
+            if (!$last) {
+                $value = 1;
+            } else {
 
-            // If there is no records, set the first cycle as 1
-            $value = $last ? $rule->calculate($consume_rule, ['start' => $last->created_at, 'end' => $now]) : 1;
+                if ($contract->started_at > $last->crated_at) {
+                    $date = $contract->started_at;
+                } else {
+                    $date = $last->crated_at;
+                }
+
+                $value = $rule->calculate($consume_rule, ['start' => $last->created_at, 'end' => new \DateTime()]);
+
+            }
 
             if ($value) {
                 $items->push(new Bag([
@@ -155,6 +165,10 @@ class BaseConsumer implements IssuerContract
     {
         $items = new Collection();
 
+        if ($contract->status !== ContractSchema::STATUS_STARTED) {
+            return $items;
+        }
+
         // A contract is only a container of products
         foreach ($contract->products as $product) {
             $items = $items->merge($this->createItem($target, $product));
@@ -178,6 +192,7 @@ class BaseConsumer implements IssuerContract
 
             foreach ($items as $item) {
                 $cpm->createOrFail([
+                    'contract_id'         => $contract->id,
                     'contract_product_id' => $item->get('contract_product')->id,
                     'sellable_product_id' => $item->get('sellable_product')->id,
                     'value'               => $item->get('value'),

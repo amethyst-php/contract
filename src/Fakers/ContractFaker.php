@@ -25,11 +25,6 @@ class ContractFaker extends Faker
         $bag->set('locale', 'it_IT');
         $bag->set('currency', 'EUR');
         $bag->set('payment_method', 'iban');
-        $bag->set('renewals', 12);
-        $bag->set('starts_at', (new \DateTime())->modify('-1 year')->format('Y-m-d'));
-        $bag->set('ends_at', (new \DateTime())->modify('+1 year')->format('Y-m-d'));
-        $bag->set('last_bill_at', (new \DateTime())->modify('-1 month')->format('Y-m-d'));
-        $bag->set('next_bill_at', (new \DateTime())->format('Y-m-d'));
 
         return $bag;
     }

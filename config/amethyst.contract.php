@@ -37,7 +37,7 @@ return [
             'group-taxonomy' => 'contract-products',
         ],
         'contract-product-consume' => [
-            'table'      => 'amethyst_consumed_products',
+            'table'      => 'amethyst_contract_product_consumes',
             'comment'    => 'Consumed Product',
             'model'      => Railken\Amethyst\Models\ContractProductConsume::class,
             'schema'     => Railken\Amethyst\Schemas\ContractProductConsumeSchema::class,

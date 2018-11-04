@@ -4,6 +4,7 @@ namespace Railken\Amethyst\Schemas;
 
 use Railken\Amethyst\Managers\ContractProductManager;
 use Railken\Amethyst\Managers\SellableProductCatalogueManager;
+use Railken\Amethyst\Managers\ContractManager;
 use Railken\Lem\Attributes;
 use Railken\Lem\Schema;
 
@@ -18,6 +19,10 @@ class ContractProductConsumeSchema extends Schema
     {
         return [
             Attributes\IdAttribute::make(),
+            Attributes\BelongsToAttribute::make('contract_id')
+                ->setRelationName('contract')
+                ->setRelationManager(ContractManager::class)
+                ->setRequired(true),
             Attributes\BelongsToAttribute::make('contract_product_id')
                 ->setRelationName('contract_product')
                 ->setRelationManager(ContractProductManager::class)

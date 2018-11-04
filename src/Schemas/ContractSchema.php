@@ -43,11 +43,9 @@ class ContractSchema extends Schema
             Attributes\BelongsToAttribute::make('address_id')
                 ->setRelationName('address')
                 ->setRelationManager(AddressManager::class),
-            Attributes\DateTimeAttribute::make('last_bill_at'),
-            Attributes\DateTimeAttribute::make('next_bill_at'),
-            Attributes\DateTimeAttribute::make('starts_at'),
-            Attributes\DateTimeAttribute::make('ends_at'),
-            Attributes\NumberAttribute::make('renewals'),
+            Attributes\DateTimeAttribute::make('started_at'),
+            Attributes\DateTimeAttribute::make('suspended_at'),
+            Attributes\DateTimeAttribute::make('terminated_at'),
             Attributes\EnumAttribute::make('payment_method', Config::get('amethyst.contract.data.contract.payment_methods')),
             Attributes\EnumAttribute::make('status', [
                 static::STATUS_PENDING,

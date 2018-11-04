@@ -16,11 +16,11 @@ class ContractProductConsumeFaker extends Faker
         $faker = Factory::create();
 
         $bag = new Bag();
+        $bag->set('contract', ContractFaker::make()->parameters()->toArray());
         $bag->set('contract_product', ContractProductFaker::make()->parameters()->toArray());
         $bag->set('sellable_product', SellableProductCatalogueFaker::make()->parameters()->toArray());
         $bag->set('value', 1);
         $bag->set('notes', $faker->text);
-        $bag->set('billed_at', (new \DateTime()));
 
         return $bag;
     }
