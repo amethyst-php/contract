@@ -6,22 +6,17 @@ use DateTime;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
 use Railken\Amethyst\Contracts\IssuerContract;
+use Railken\Amethyst\Managers\ContractProductConsumeManager;
 use Railken\Amethyst\Managers\InvoiceContainerManager;
 use Railken\Amethyst\Managers\InvoiceItemManager;
 use Railken\Amethyst\Managers\InvoiceManager;
-use Railken\Amethyst\Managers\SellableProductCatalogueManager;
 use Railken\Amethyst\Managers\TaxonomyManager;
 use Railken\Amethyst\Models\Contract;
-use Railken\Amethyst\Models\ContractProduct;
+use Railken\Amethyst\Models\ContractProductConsume;
 use Railken\Amethyst\Models\Invoice;
 use Railken\Amethyst\Models\InvoiceContainer;
 use Railken\Amethyst\Models\InvoiceItem;
 use Railken\Amethyst\Models\LegalEntity;
-use Railken\Amethyst\Models\SellableProductCatalogue;
-use Railken\Amethyst\Models\ContractProductConsume;
-use Railken\Amethyst\Models\Target;
-use Railken\Bag;
-use Railken\Amethyst\Managers\ContractProductConsumeManager;
 
 class BaseIssuer implements IssuerContract
 {
@@ -80,9 +75,9 @@ class BaseIssuer implements IssuerContract
     }
 
     /**
-     * @param \Railken\Amethyst\Models\Invoice          $invoice
-     * @param \Railken\Amethyst\Models\InvoiceContainer $invoiceContainer
-     * @param \Railken\Amethyst\Models\ContractProductConsume            $contractProductConsume
+     * @param \Railken\Amethyst\Models\Invoice                $invoice
+     * @param \Railken\Amethyst\Models\InvoiceContainer       $invoiceContainer
+     * @param \Railken\Amethyst\Models\ContractProductConsume $contractProductConsume
      *
      * @return InvoiceItem
      */
@@ -106,7 +101,7 @@ class BaseIssuer implements IssuerContract
 
     /**
      * @param \Railken\Amethyst\Models\Invoice $invoice
-     * @param string $name
+     * @param string                           $name
      *
      * @return InvoiceItem
      */
@@ -119,7 +114,6 @@ class BaseIssuer implements IssuerContract
             'invoice_id'  => $invoice->id,
         ])->getResource();
     }
-
 
     /**
      * Retrieve a collection of products that have to be issued.

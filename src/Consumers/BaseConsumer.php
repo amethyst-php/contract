@@ -11,8 +11,8 @@ use Railken\Amethyst\Models\ContractProduct;
 use Railken\Amethyst\Models\InvoiceItem;
 use Railken\Amethyst\Models\SellableProductCatalogue;
 use Railken\Amethyst\Models\Target;
-use Railken\Bag;
 use Railken\Amethyst\Schemas\ContractSchema;
+use Railken\Bag;
 
 class BaseConsumer implements IssuerContract
 {
@@ -81,6 +81,17 @@ class BaseConsumer implements IssuerContract
     }
 
     /**
+     * @param ContractProduct          $product
+     * @param SellableProductCatalogue $sellableProductCatalogue
+     *
+     * @return bool
+     */
+    public function shouldCreateFirstProductConsumed(ContractProduct $contractProduct, SellableProductCatalogue $sellableProductCatalogue)
+    {
+        return true;
+    }
+
+    /**
      * Handle One Time Product.
      *
      * @param ContractProduct          $product
@@ -104,20 +115,29 @@ class BaseConsumer implements IssuerContract
 
             $last = $cpm->getRepository()->newQuery()->where([
                 'contract_product_id' => $contractProduct->id,
+                'sellable_product_id' => $sellableProductCatalogue->id,
             ])->orderBy('created_at', 'DESC')->first();
 
-            if (!$last) {
+            $value = null;
+
+            if (!$last && $this->shouldCreateFirstProductConsumed($contractProduct, $sellableProductCatalogue)) {
                 $value = 1;
             } else {
+                $payload = $rule->payload;
 
-                if ($contract->started_at > $last->crated_at) {
-                    $date = $contract->started_at;
-                } else {
-                    $date = $last->crated_at;
+                $start = $last->created_at;
+
+                // We always want to consume products until the next cycle;
+                $now = (new \DateTime());
+
+                // We assume the consumer is always up, so if more than one cycle has passed we will make no adjustments.
+                $diff = $start->diff($now);
+                $cyclePassed = $rule->getDateIntervalPropertyByUnit($diff, $payload->frequency_unit) / $payload->frequency_value;
+
+                // If the previous values was 0.80, we will wait only 0.80 time to consume again the recurrent product.
+                if ($cyclePassed >= $value) {
+                    $value = 1;
                 }
-
-                $value = $rule->calculate($consume_rule, ['start' => $last->created_at, 'end' => new \DateTime()]);
-
             }
 
             if ($value) {

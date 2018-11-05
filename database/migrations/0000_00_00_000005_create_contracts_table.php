@@ -32,7 +32,6 @@ class CreateContractsTable extends Migration
 
             $table->string('payment_method');
 
-
             $table->date('started_at')->nullable();
             $table->date('suspended_at')->nullable();
             $table->date('terminated_at')->nullable();
@@ -56,7 +55,7 @@ class CreateContractsTable extends Migration
             $table->date('started_at')->nullable();
             $table->date('suspended_at')->nullable();
             $table->date('terminated_at')->nullable();
-            
+
             $table->string('status')->default('pending');
             $table->timestamps();
             $table->softDeletes();

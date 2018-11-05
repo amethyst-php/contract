@@ -104,7 +104,6 @@ class BaseIssuerTest extends BaseTest
         $cm->start($contract);
         $cpm->start($contract->products[0]);
 
-
         $items = $consumer->getItemsToConsume($target, $contract);
 
         $this->assertEquals(1, $items->count());
@@ -119,6 +118,5 @@ class BaseIssuerTest extends BaseTest
         $sender = (new LegalEntityManager())->createOrFail(LegalEntityFaker::make()->parameters())->getResource();
         $invoice = $issuer->issue($sender, $contract);
         $this->assertEquals(1, $invoice->items->count());
-        
     }
 }

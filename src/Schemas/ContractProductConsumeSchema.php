@@ -2,9 +2,9 @@
 
 namespace Railken\Amethyst\Schemas;
 
+use Railken\Amethyst\Managers\ContractManager;
 use Railken\Amethyst\Managers\ContractProductManager;
 use Railken\Amethyst\Managers\SellableProductCatalogueManager;
-use Railken\Amethyst\Managers\ContractManager;
 use Railken\Lem\Attributes;
 use Railken\Lem\Schema;
 
