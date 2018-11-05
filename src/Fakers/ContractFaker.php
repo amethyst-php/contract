@@ -19,7 +19,7 @@ class ContractFaker extends Faker
         $bag->set('code', str_random(10));
         $bag->set('notes', str_random(40));
         $bag->set('customer', CustomerFaker::make()->parameters()->toArray());
-        $bag->set('address', AddressFaker::make()->parameters()->toArray());
+        $bag->set('target', TargetFaker::make()->parameters()->toArray());
         $bag->set('tax', TaxFaker::make()->parameters()->toArray());
         $bag->set('country', 'IT');
         $bag->set('locale', 'it_IT');

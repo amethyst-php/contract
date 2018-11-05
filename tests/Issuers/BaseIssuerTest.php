@@ -76,6 +76,7 @@ class BaseIssuerTest extends BaseTest
         $contract = $cm->createOrFail(
             ContractFaker::make()->parameters()
                 ->set('renewals', 0)
+                ->remove('target')->set('target_id', $target->id)
         )->getResource();
 
         // Add the product to the contract
@@ -104,12 +105,12 @@ class BaseIssuerTest extends BaseTest
         $cm->start($contract);
         $cpm->start($contract->products[0]);
 
-        $items = $consumer->getItemsToConsume($target, $contract);
+        $items = $consumer->getItemsToConsume($contract);
 
         $this->assertEquals(1, $items->count());
         $this->assertEquals(1, $items->get(0)->get('value'));
 
-        $consumer->consume($target, $contract);
+        $consumer->consume($contract);
 
         $issuer = new BaseIssuer();
 

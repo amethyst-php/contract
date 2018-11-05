@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Railken\Amethyst\Common\ConfigurableModel;
 use Railken\Lem\Contracts\EntityContract;
 
+/**
+ * @property DateTime $started_at
+ * @property DateTime $suspended_at
+ * @property DateTime $terminated_at
+ * @property string $status
+ */
 class ContractProduct extends Model implements EntityContract
 {
     use SoftDeletes, ConfigurableModel;

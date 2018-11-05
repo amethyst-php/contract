@@ -10,7 +10,7 @@ use Railken\Amethyst\Models\Contract;
 use Railken\Amethyst\Models\ContractProduct;
 use Railken\Amethyst\Models\InvoiceItem;
 use Railken\Amethyst\Models\SellableProductCatalogue;
-use Railken\Amethyst\Models\Target;
+use Railken\Amethyst\Schemas\ContractProductSchema;
 use Railken\Amethyst\Schemas\ContractSchema;
 use Railken\Bag;
 
@@ -19,17 +19,16 @@ class BaseConsumer implements IssuerContract
     /**
      * Find all the prices connected to a single product.
      *
-     * @param Target          $target
      * @param ContractProduct $contractProduct
      *
      * @return Collection
      */
-    public function findPricesSellableProductByCatalogue(Target $target, ContractProduct $contractProduct)
+    public function findPricesSellableProductByCatalogue(ContractProduct $contractProduct)
     {
         $m = new SellableProductCatalogueManager();
 
         return $m->getRepository()->findBy([
-            'target_id'    => $target->id,
+            'target_id'    => $contractProduct->contract->target->id,
             'catalogue_id' => $contractProduct->catalogue->id,
             'product_id'   => $contractProduct->product->id,
         ]);
@@ -153,16 +152,15 @@ class BaseConsumer implements IssuerContract
     }
 
     /**
-     * @param Target          $target
      * @param ContractProduct $product
      *
      * @return InvoiceItem
      */
-    public function createItem(Target $target, ContractProduct $contractProduct)
+    public function createItem(ContractProduct $contractProduct)
     {
         $items = new Collection();
 
-        $sellableProductCatalogues = $this->findPricesSellableProductByCatalogue($target, $contractProduct);
+        $sellableProductCatalogues = $this->findPricesSellableProductByCatalogue($contractProduct);
 
         foreach ($sellableProductCatalogues as $sellableProductCatalogue) {
             // OneTimeProduct should be added manually
@@ -176,22 +174,19 @@ class BaseConsumer implements IssuerContract
     /**
      * Retrieve a collection of products that have to be issued.
      *
-     * @param Target   $target
      * @param Contract $contract
      *
      * @return Collection
      */
-    public function getItemsToConsume(Target $target, Contract $contract)
+    public function getItemsToConsume(Contract $contract)
     {
         $items = new Collection();
 
-        if ($contract->status !== ContractSchema::STATUS_STARTED) {
-            return $items;
-        }
-
         // A contract is only a container of products
         foreach ($contract->products as $product) {
-            $items = $items->merge($this->createItem($target, $product));
+            if ($product->status === ContractProductSchema::STATUS_STARTED) {
+                $items = $items->merge($this->createItem($target, $product));
+            }
         }
 
         return $items;
@@ -200,11 +195,14 @@ class BaseConsumer implements IssuerContract
     /**
      * Issue.
      *
-     * @param Target   $target
      * @param Contract $contract
      */
-    public function consume(Target $target, Contract $contract)
+    public function consume(Contract $contract)
     {
+        if ($contract->status !== ContractSchema::STATUS_STARTED) {
+            return null;
+        }
+
         $items = $this->getItemsToConsume($target, $contract);
 
         if ($items->count() > 0) {

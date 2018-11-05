@@ -4,8 +4,8 @@ namespace Railken\Amethyst\Schemas;
 
 use Illuminate\Support\Facades\Config;
 use Railken\Amethyst\Attributes as AmethystAttributes;
-use Railken\Amethyst\Managers\AddressManager;
 use Railken\Amethyst\Managers\CustomerManager;
+use Railken\Amethyst\Managers\TargetManager;
 use Railken\Amethyst\Managers\TaxManager;
 use Railken\Lem\Attributes;
 use Railken\Lem\Schema;
@@ -40,9 +40,9 @@ class ContractSchema extends Schema
             Attributes\BelongsToAttribute::make('customer_id')
                 ->setRelationName('customer')
                 ->setRelationManager(CustomerManager::class),
-            Attributes\BelongsToAttribute::make('address_id')
-                ->setRelationName('address')
-                ->setRelationManager(AddressManager::class),
+            Attributes\BelongsToAttribute::make('target_id')
+                ->setRelationName('target')
+                ->setRelationManager(TargetManager::class),
             Attributes\DateTimeAttribute::make('started_at'),
             Attributes\DateTimeAttribute::make('suspended_at'),
             Attributes\DateTimeAttribute::make('terminated_at'),
