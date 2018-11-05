@@ -124,7 +124,7 @@ class BaseConsumer implements IssuerContract
             } else {
                 $payload = $rule->payload;
 
-                $start = $last->created_at;
+                $start = $last->started_at;
 
                 // We always want to consume products until the next cycle;
                 $now = (new \DateTime());
@@ -185,7 +185,7 @@ class BaseConsumer implements IssuerContract
         // A contract is only a container of products
         foreach ($contract->products as $product) {
             if ($product->status === ContractProductSchema::STATUS_STARTED) {
-                $items = $items->merge($this->createItem($target, $product));
+                $items = $items->merge($this->createItem($product));
             }
         }
 
@@ -203,7 +203,7 @@ class BaseConsumer implements IssuerContract
             return null;
         }
 
-        $items = $this->getItemsToConsume($target, $contract);
+        $items = $this->getItemsToConsume($contract);
 
         if ($items->count() > 0) {
             $cpm = new ContractProductConsumeManager();
