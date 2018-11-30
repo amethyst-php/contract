@@ -30,7 +30,6 @@ class ContractSchema extends Schema
                 ->setRequired(true)
                 ->setUnique(true),
             Attributes\LongTextAttribute::make('notes'),
-            Attributes\BooleanAttribute::make('enabled'),
             AmethystAttributes\CountryAttribute::make('country'),
             AmethystAttributes\Invoice\CurrencyAttribute::make('currency'),
             AmethystAttributes\Invoice\LocaleAttribute::make('locale'),
