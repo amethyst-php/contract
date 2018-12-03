@@ -114,6 +114,7 @@ class BaseConsumer implements IssuerContract
 
             $last = $cpm->getRepository()->newQuery()->where([
                 'product_id' => $contractProduct->product->id,
+                'contract_id' => $contractProduct->contract->id,
             ])->orderBy('created_at', 'DESC')->first();
 
             $value = null;
@@ -121,9 +122,9 @@ class BaseConsumer implements IssuerContract
             if (!$last && $this->shouldCreateFirstProductConsumed($contractProduct, $sellableProductCatalogue)) {
                 $value = 1;
             } else {
-                $payload = $rule->payload;
+                $payload = $consume_rule->payload;
 
-                $start = $last->started_at;
+                $start = $last->created_at;
 
                 // We always want to consume products until the next cycle;
                 $now = (new \DateTime());
