@@ -21,6 +21,6 @@ abstract class ContractProductEvent
      */
     public function __construct(ContractProduct $contractProduct)
     {
-        $this->contract = $contractProduct;
+        $this->contractProduct = $contractProduct;
     }
 }

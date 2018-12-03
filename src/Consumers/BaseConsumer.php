@@ -37,7 +37,7 @@ class BaseConsumer implements IssuerContract
     /**
      * Handle One Time Product.
      *
-     * @param ContractProduct          $product
+     * @param ContractProduct          $contractProduct
      * @param SellableProductCatalogue $sellableProductCatalogue
      *
      * @return Collection
@@ -80,7 +80,7 @@ class BaseConsumer implements IssuerContract
     }
 
     /**
-     * @param ContractProduct          $product
+     * @param ContractProduct          $contractProduct
      * @param SellableProductCatalogue $sellableProductCatalogue
      *
      * @return bool
@@ -93,7 +93,7 @@ class BaseConsumer implements IssuerContract
     /**
      * Handle One Time Product.
      *
-     * @param ContractProduct          $product
+     * @param ContractProduct          $contractProduct
      * @param SellableProductCatalogue $sellableProductCatalogue
      *
      * @return Collection
@@ -113,8 +113,7 @@ class BaseConsumer implements IssuerContract
             $cpm = new ContractProductConsumeManager();
 
             $last = $cpm->getRepository()->newQuery()->where([
-                'contract_product_id' => $contractProduct->id,
-                'sellable_product_id' => $sellableProductCatalogue->id,
+                'product_id' => $contractProduct->product->id,
             ])->orderBy('created_at', 'DESC')->first();
 
             $value = null;
@@ -152,7 +151,7 @@ class BaseConsumer implements IssuerContract
     }
 
     /**
-     * @param ContractProduct $product
+     * @param ContractProduct $contractProduct
      *
      * @return InvoiceItem
      */
@@ -211,8 +210,10 @@ class BaseConsumer implements IssuerContract
             foreach ($items as $item) {
                 $cpm->createOrFail([
                     'contract_id'         => $contract->id,
-                    'contract_product_id' => $item->get('contract_product')->id,
-                    'sellable_product_id' => $item->get('sellable_product')->id,
+                    'product_id'          => $item->get('contract_product')->product->id,
+                    'price'               => $item->get('sellable_product')->price,
+                    'tax_id'              => $item->get('sellable_product')->tax_id,
+                    'group_id'            => $item->get('contract_product')->group->id,
                     'value'               => $item->get('value'),
                 ]);
             }

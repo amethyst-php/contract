@@ -8,13 +8,18 @@ use Railken\Amethyst\Common\ConfigurableModel;
 use Railken\Lem\Contracts\EntityContract;
 
 /**
- * @property \DateTime $started_at
- * @property \DateTime $suspended_at
- * @property \DateTime $terminated_at
- * @property string    $status
- * @property string $country
- * @property string $locale
- * @property string $currency
+ * @property \DateTime  $started_at
+ * @property \DateTime  $suspended_at
+ * @property \DateTime  $terminated_at
+ * @property string     $status
+ * @property string     $country
+ * @property string     $locale
+ * @property string     $currency
+ * @property Customer   $customer
+ * @property Target     $target
+ * @property Tax        $tax
+ * @property Collection $products
+ * @property int        $renewals
  */
 class Contract extends Model implements EntityContract
 {

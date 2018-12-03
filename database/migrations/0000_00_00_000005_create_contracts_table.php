@@ -65,11 +65,19 @@ class CreateContractsTable extends Migration
             $table->increments('id');
             $table->integer('contract_id')->unsigned();
             $table->foreign('contract_id')->references('id')->on(Config::get('amethyst.contract.data.contract.table'));
-            $table->integer('contract_product_id')->unsigned();
-            $table->foreign('contract_product_id')->references('id')->on(Config::get('amethyst.contract.data.contract-product.table'));
-            $table->integer('sellable_product_id')->unsigned();
-            $table->foreign('sellable_product_id')->references('id')->on(Config::get('amethyst.sellable-product-catalogue.data.sellable-product-catalogue.table'));
-            $table->boolean('value');
+
+            $table->integer('product_id')->unsigned();
+            $table->foreign('product_id')->references('id')->on(Config::get('amethyst.product.data.product.table'));
+
+            $table->integer('tax_id')->unsigned()->nullable();
+            $table->foreign('tax_id')->references('id')->on(Config::get('amethyst.tax.data.tax.table'));
+
+            $table->integer('group_id')->unsigned();
+            $table->foreign('group_id')->references('id')->on(Config::get('amethyst.taxonomy.data.taxonomy.table'));
+
+            $table->float('price');
+            $table->integer('value')->default(1);
+
             $table->text('notes')->nullable();
             $table->timestamp('billed_at')->nullable();
             $table->timestamps();

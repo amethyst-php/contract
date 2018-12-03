@@ -88,12 +88,12 @@ class BaseIssuer implements IssuerContract
         $tm = new TaxonomyManager();
 
         return $manager->createOrFail([
-            'name'                 => $contractProductConsume->contract_product->product->code,
+            'name'                 => $contractProductConsume->product->code,
             'unit_id'              => $tm->findOrCreate(['name' => 'u', 'parent_id' => $this->getParentInvoiceUnit()->id])->getResource()->id,
             'description'          => strval($contractProductConsume->notes),
             'quantity'             => 1,
-            'price'                => round($contractProductConsume->sellable_product->price, 2, PHP_ROUND_HALF_UP),
-            'tax_id'               => $contractProductConsume->sellable_product->tax->id,
+            'price'                => round($contractProductConsume->price, 2, PHP_ROUND_HALF_UP),
+            'tax_id'               => $contractProductConsume->tax->id,
             'invoice_id'           => $invoice->id,
             'invoice_container_id' => $invoiceContainer->id,
         ])->getResource();
@@ -143,7 +143,7 @@ class BaseIssuer implements IssuerContract
             $invoice = $this->createInvoice($sender, $contract);
 
             foreach ($contractProductConsumes as $contractProductConsume) {
-                $invoiceContainer = $this->createInvoiceContainer($invoice, $contractProductConsume->contract_product->group->name);
+                $invoiceContainer = $this->createInvoiceContainer($invoice, $contractProductConsume->group->name);
                 $invoiceItem = $this->createInvoiceItem($invoice, $invoiceContainer, $contractProductConsume);
 
                 $contractProductConsume->billed_at = new \DateTime();

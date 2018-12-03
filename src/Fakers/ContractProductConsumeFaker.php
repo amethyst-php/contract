@@ -3,6 +3,7 @@
 namespace Railken\Amethyst\Fakers;
 
 use Faker\Factory;
+use Illuminate\Support\Facades\Config;
 use Railken\Bag;
 use Railken\Lem\Faker;
 
@@ -17,8 +18,11 @@ class ContractProductConsumeFaker extends Faker
 
         $bag = new Bag();
         $bag->set('contract', ContractFaker::make()->parameters()->toArray());
-        $bag->set('contract_product', ContractProductFaker::make()->parameters()->toArray());
-        $bag->set('sellable_product', SellableProductCatalogueFaker::make()->parameters()->toArray());
+        $bag->set('product', ProductFaker::make()->parameters()->toArray());
+        $bag->set('tax', TaxFaker::make()->parameters()->toArray());
+        $bag->set('group', TaxonomyFaker::make()->parameters()->toArray());
+        $bag->set('group.parent.name', Config::get('amethyst.contract.data.contract-product.group-taxonomy'));
+        $bag->set('price', 10);
         $bag->set('value', 1);
         $bag->set('notes', $faker->text);
 

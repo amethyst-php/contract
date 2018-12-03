@@ -11,8 +11,13 @@ use Railken\Lem\Contracts\EntityContract;
  * @property \DateTime $started_at
  * @property \DateTime $suspended_at
  * @property \DateTime $terminated_at
- * @property string   $status
- * @property Contract $contract
+ * @property string    $status
+ * @property Contract  $contract
+ * @property Catalogue $catalogue
+ * @property Target    $target
+ * @property Group     $group
+ * @property Product   $product
+ * @property int       $renewals
  */
 class ContractProduct extends Model implements EntityContract
 {

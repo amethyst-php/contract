@@ -7,6 +7,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Railken\Amethyst\Common\ConfigurableModel;
 use Railken\Lem\Contracts\EntityContract;
 
+/**
+ * @property Tax      $tax
+ * @property Contract $contract
+ * @property Product  $product
+ * @property Group    $group
+ * @property int      $value
+ * @property float    $price
+ * @property string   $notes
+ */
 class ContractProductConsume extends Model implements EntityContract
 {
     use SoftDeletes, ConfigurableModel;
@@ -25,14 +34,6 @@ class ContractProductConsume extends Model implements EntityContract
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function contract_product()
-    {
-        return $this->belongsTo(ContractProduct::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
     public function contract()
     {
         return $this->belongsTo(Contract::class);
@@ -41,8 +42,24 @@ class ContractProductConsume extends Model implements EntityContract
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function sellable_product()
+    public function product()
     {
-        return $this->belongsTo(SellableProductCatalogue::class);
+        return $this->belongsTo(Product::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function tax()
+    {
+        return $this->belongsTo(Tax::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function group()
+    {
+        return $this->belongsTo(Taxonomy::class);
     }
 }
