@@ -113,7 +113,7 @@ class BaseConsumer implements IssuerContract
             $cpm = new ContractProductConsumeManager();
 
             $last = $cpm->getRepository()->newQuery()->where([
-                'product_id' => $contractProduct->product->id,
+                'product_id'  => $contractProduct->product->id,
                 'contract_id' => $contractProduct->contract->id,
             ])->orderBy('created_at', 'DESC')->first();
 
