@@ -134,7 +134,7 @@ class BaseConsumer implements IssuerContract
                 $cyclePassed = $rule->getDateIntervalPropertyByUnit($diff, $payload->frequency_unit) / $payload->frequency_value;
 
                 // If the previous values was 0.80, we will wait only 0.80 time to consume again the recurrent product.
-                if ($cyclePassed >= $value) {
+                if ($cyclePassed >= $last->value) {
                     $value = 1;
                 }
             }
