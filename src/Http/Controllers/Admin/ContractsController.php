@@ -2,11 +2,11 @@
 
 namespace Railken\Amethyst\Http\Controllers\Admin;
 
+use Illuminate\Http\Request;
 use Railken\Amethyst\Api\Http\Controllers\RestManagerController;
 use Railken\Amethyst\Api\Http\Controllers\Traits as RestTraits;
 use Railken\Amethyst\Managers\ContractManager;
 use Symfony\Component\HttpFoundation\Response;
-use Illuminate\Http\Request;
 
 class ContractsController extends RestManagerController
 {
@@ -26,8 +26,8 @@ class ContractsController extends RestManagerController
     /**
      * Execute a common action.
      *
-     * @param int    $id
-     * @param string $action
+     * @param int                      $id
+     * @param string                   $action
      * @param \Illuminate\Http\Request $request
      *
      * @return \Symfony\Component\HttpFoundation\Response
@@ -46,7 +46,7 @@ class ContractsController extends RestManagerController
     }
 
     /**
-     * @param int $id
+     * @param int                      $id
      * @param \Illuminate\Http\Request $request
      *
      * @return \Symfony\Component\HttpFoundation\Response
@@ -57,7 +57,7 @@ class ContractsController extends RestManagerController
     }
 
     /**
-     * @param int $id
+     * @param int                      $id
      * @param \Illuminate\Http\Request $request
      *
      * @return \Symfony\Component\HttpFoundation\Response
@@ -68,7 +68,7 @@ class ContractsController extends RestManagerController
     }
 
     /**
-     * @param int $id
+     * @param int                      $id
      * @param \Illuminate\Http\Request $request
      *
      * @return \Symfony\Component\HttpFoundation\Response
@@ -79,7 +79,7 @@ class ContractsController extends RestManagerController
     }
 
     /**
-     * @param int $id
+     * @param int                      $id
      * @param \Illuminate\Http\Request $request
      *
      * @return \Symfony\Component\HttpFoundation\Response

@@ -30,7 +30,7 @@ class ContractServiceProvider extends CommonServiceProvider
     public function loadExtraRoutes()
     {
         $config = Config::get('amethyst.contract.http.admin.contract');
-        
+
         if (Arr::get($config, 'enabled')) {
             Router::group('admin', Arr::get($config, 'router'), function ($router) use ($config) {
                 $controller = Arr::get($config, 'controller');
@@ -42,7 +42,7 @@ class ContractServiceProvider extends CommonServiceProvider
         }
 
         $config = Config::get('amethyst.contract.http.admin.contract-product');
-        
+
         if (Arr::get($config, 'enabled')) {
             Router::group('admin', Arr::get($config, 'router'), function ($router) use ($config) {
                 $controller = Arr::get($config, 'controller');
