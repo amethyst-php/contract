@@ -28,15 +28,19 @@ class ContractProductSchema extends Schema
             Attributes\IdAttribute::make(),
             Attributes\BelongsToAttribute::make('catalogue_id')
                 ->setRelationName('catalogue')
-                ->setRelationManager(CatalogueManager::class),
+                ->setRelationManager(CatalogueManager::class)
+                ->setRequired(true),
             Attributes\BelongsToAttribute::make('contract_id')
                 ->setRelationName('contract')
-                ->setRelationManager(ContractManager::class),
+                ->setRelationManager(ContractManager::class)
+                ->setRequired(true),
             Attributes\BelongsToAttribute::make('product_id')
                 ->setRelationName('product')
-                ->setRelationManager(ProductManager::class),
+                ->setRelationManager(ProductManager::class)
+                ->setRequired(true),
             AmethystAttributes\TaxonomyAttribute::make('group_id', Config::get('amethyst.contract.data.contract-product.group-taxonomy'))
-                ->setRelationName('group'),
+                ->setRelationName('group')
+                ->setRequired(true),
             Attributes\EnumAttribute::make('status', [
                 static::STATUS_PENDING,
                 static::STATUS_STARTED,

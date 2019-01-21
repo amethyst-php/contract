@@ -61,27 +61,27 @@ return [
     'http' => [
         'admin' => [
             'contract' => [
-                'enabled'     => true,
-                'controller'  => Railken\Amethyst\Http\Controllers\Admin\ContractsController::class,
-                'router'      => [
-                    'as'        => 'contract.',
-                    'prefix'    => '/contracts',
+                'enabled'    => true,
+                'controller' => Railken\Amethyst\Http\Controllers\Admin\ContractsController::class,
+                'router'     => [
+                    'as'     => 'contract.',
+                    'prefix' => '/contracts',
                 ],
             ],
             'contract-product' => [
-                'enabled'     => true,
-                'controller'  => Railken\Amethyst\Http\Controllers\Admin\ContractProductsController::class,
-                'router'      => [
-                    'as'        => 'contract-product.',
-                    'prefix'    => '/contract-products',
+                'enabled'    => true,
+                'controller' => Railken\Amethyst\Http\Controllers\Admin\ContractProductsController::class,
+                'router'     => [
+                    'as'     => 'contract-product.',
+                    'prefix' => '/contract-products',
                 ],
             ],
             'contract-product-consume' => [
-                'enabled'     => true,
-                'controller'  => Railken\Amethyst\Http\Controllers\Admin\ContractProductConsumesController::class,
-                'router'      => [
-                    'as'        => 'contract-product-consume.',
-                    'prefix'    => '/contract-product-consumes',
+                'enabled'    => true,
+                'controller' => Railken\Amethyst\Http\Controllers\Admin\ContractProductConsumesController::class,
+                'router'     => [
+                    'as'     => 'contract-product-consume.',
+                    'prefix' => '/contract-product-consumes',
                 ],
             ],
         ],

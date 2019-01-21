@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\File;
 
 abstract class BaseTest extends \Orchestra\Testbench\TestCase
 {
+    protected static $setup = false;
+
     /**
      * Setup the test environment.
      */
@@ -15,6 +17,12 @@ abstract class BaseTest extends \Orchestra\Testbench\TestCase
         $dotenv->load();
 
         parent::setUp();
+
+        if (static::$setup === true) {
+            return true;
+        }
+
+        static::$setup = true;
 
         File::cleanDirectory(database_path('migrations/'));
 

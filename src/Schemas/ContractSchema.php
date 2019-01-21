@@ -30,18 +30,24 @@ class ContractSchema extends Schema
                 ->setRequired(true)
                 ->setUnique(true),
             Attributes\LongTextAttribute::make('notes'),
-            AmethystAttributes\CountryAttribute::make('country'),
-            AmethystAttributes\Invoice\CurrencyAttribute::make('currency'),
-            AmethystAttributes\Invoice\LocaleAttribute::make('locale'),
+            AmethystAttributes\CountryAttribute::make('country')
+                ->setRequired(true),
+            AmethystAttributes\Invoice\CurrencyAttribute::make('currency')
+                ->setRequired(true),
+            AmethystAttributes\Invoice\LocaleAttribute::make('locale')
+                ->setRequired(true),
             Attributes\BelongsToAttribute::make('tax_id')
                 ->setRelationName('tax')
-                ->setRelationManager(TaxManager::class),
+                ->setRelationManager(TaxManager::class)
+                ->setRequired(true),
             Attributes\BelongsToAttribute::make('customer_id')
                 ->setRelationName('customer')
-                ->setRelationManager(CustomerManager::class),
+                ->setRelationManager(CustomerManager::class)
+                ->setRequired(true),
             Attributes\BelongsToAttribute::make('target_id')
                 ->setRelationName('target')
-                ->setRelationManager(TargetManager::class),
+                ->setRelationManager(TargetManager::class)
+                ->setRequired(true),
             Attributes\DateTimeAttribute::make('started_at'),
             Attributes\DateTimeAttribute::make('suspended_at'),
             Attributes\DateTimeAttribute::make('terminated_at'),

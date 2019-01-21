@@ -54,9 +54,9 @@ class BaseConsumer implements IssuerContract
         if ($rule instanceof \Railken\Amethyst\ConsumeRules\BaseConsumeRule) {
             if (intval($contractProduct->renewals) === 0) {
                 $items->push(new Bag([
-                    'sellable_product'  => $sellableProductCatalogue,
-                    'contract_product'  => $contractProduct,
-                    'value'             => $rule->calculate($consume_rule),
+                    'sellable_product' => $sellableProductCatalogue,
+                    'contract_product' => $contractProduct,
+                    'value'            => $rule->calculate($consume_rule),
                 ]));
             }
         }
@@ -141,9 +141,9 @@ class BaseConsumer implements IssuerContract
 
             if ($value) {
                 $items->push(new Bag([
-                    'sellable_product'  => $sellableProductCatalogue,
-                    'contract_product'  => $contractProduct,
-                    'value'             => $value,
+                    'sellable_product' => $sellableProductCatalogue,
+                    'contract_product' => $contractProduct,
+                    'value'            => $value,
                 ]));
             }
         }
@@ -210,12 +210,12 @@ class BaseConsumer implements IssuerContract
 
             foreach ($items as $item) {
                 $cpm->createOrFail([
-                    'contract_id'         => $contract->id,
-                    'product_id'          => $item->get('contract_product')->product->id,
-                    'price'               => $item->get('sellable_product')->price,
-                    'tax_id'              => $item->get('sellable_product')->tax_id,
-                    'group_id'            => $item->get('contract_product')->group->id,
-                    'value'               => $item->get('value'),
+                    'contract_id' => $contract->id,
+                    'product_id'  => $item->get('contract_product')->product->id,
+                    'price'       => $item->get('sellable_product')->price,
+                    'tax_id'      => $item->get('sellable_product')->tax_id,
+                    'group_id'    => $item->get('contract_product')->group->id,
+                    'value'       => $item->get('value'),
                 ]);
             }
         }

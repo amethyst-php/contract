@@ -30,7 +30,7 @@ class CreateContractsTable extends Migration
             $table->string('locale');
             $table->string('currency');
 
-            $table->string('payment_method');
+            $table->string('payment_method')->nullable();
 
             $table->date('started_at')->nullable();
             $table->date('suspended_at')->nullable();

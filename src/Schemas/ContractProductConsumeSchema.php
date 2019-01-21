@@ -23,17 +23,23 @@ class ContractProductConsumeSchema extends Schema
             Attributes\IdAttribute::make(),
             Attributes\BelongsToAttribute::make('contract_id')
                 ->setRelationName('contract')
-                ->setRelationManager(ContractManager::class),
+                ->setRelationManager(ContractManager::class)
+                ->setRequired(true),
             Attributes\BelongsToAttribute::make('product_id')
                 ->setRelationName('product')
-                ->setRelationManager(ProductManager::class),
+                ->setRelationManager(ProductManager::class)
+                ->setRequired(true),
             Attributes\BelongsToAttribute::make('tax_id')
                 ->setRelationName('tax')
-                ->setRelationManager(TaxManager::class),
+                ->setRelationManager(TaxManager::class)
+                ->setRequired(true),
             AmethystAttributes\TaxonomyAttribute::make('group_id', Config::get('amethyst.contract.data.contract-product.group-taxonomy'))
-                ->setRelationName('group'),
-            Attributes\NumberAttribute::make('price'),
-            Attributes\NumberAttribute::make('value'),
+                ->setRelationName('group')
+                ->setRequired(true),
+            Attributes\NumberAttribute::make('price')
+                ->setRequired(true),
+            Attributes\NumberAttribute::make('value')
+                ->setRequired(true),
             Attributes\LongTextAttribute::make('notes'),
             Attributes\DateTimeAttribute::make('billed_at'),
             Attributes\CreatedAtAttribute::make(),

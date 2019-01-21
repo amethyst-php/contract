@@ -110,8 +110,8 @@ class BaseIssuer implements IssuerContract
         $manager = new InvoiceContainerManager();
 
         return $manager->findOrCreateOrFail([
-            'name'        => $name,
-            'invoice_id'  => $invoice->id,
+            'name'       => $name,
+            'invoice_id' => $invoice->id,
         ])->getResource();
     }
 
