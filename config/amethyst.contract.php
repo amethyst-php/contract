@@ -11,17 +11,21 @@ return [
     */
     'data' => [
         'contract' => [
-            'table'           => 'amethyst_contracts',
-            'comment'         => 'Contract',
-            'model'           => Railken\Amethyst\Models\Contract::class,
-            'schema'          => Railken\Amethyst\Schemas\ContractSchema::class,
-            'repository'      => Railken\Amethyst\Repositories\ContractRepository::class,
-            'serializer'      => Railken\Amethyst\Serializers\ContractSerializer::class,
-            'validator'       => Railken\Amethyst\Validators\ContractValidator::class,
-            'authorizer'      => Railken\Amethyst\Authorizers\ContractAuthorizer::class,
-            'faker'           => Railken\Amethyst\Fakers\ContractFaker::class,
-            'manager'         => Railken\Amethyst\Managers\ContractManager::class,
-            'payment_methods' => ['iban'],
+            'table'      => 'amethyst_contracts',
+            'comment'    => 'Contract',
+            'model'      => Railken\Amethyst\Models\Contract::class,
+            'schema'     => Railken\Amethyst\Schemas\ContractSchema::class,
+            'repository' => Railken\Amethyst\Repositories\ContractRepository::class,
+            'serializer' => Railken\Amethyst\Serializers\ContractSerializer::class,
+            'validator'  => Railken\Amethyst\Validators\ContractValidator::class,
+            'authorizer' => Railken\Amethyst\Authorizers\ContractAuthorizer::class,
+            'faker'      => Railken\Amethyst\Fakers\ContractFaker::class,
+            'manager'    => Railken\Amethyst\Managers\ContractManager::class,
+            'attributes' => [
+                'payment_methods' => [
+                    'parent' => 'Payment Method',
+                ],
+            ],
         ],
         'contract-product' => [
             'table'          => 'amethyst_contract_products',

@@ -51,7 +51,8 @@ class ContractSchema extends Schema
             Attributes\DateTimeAttribute::make('started_at'),
             Attributes\DateTimeAttribute::make('suspended_at'),
             Attributes\DateTimeAttribute::make('terminated_at'),
-            Attributes\EnumAttribute::make('payment_method', Config::get('amethyst.contract.data.contract.payment_methods')),
+            AmethystAttributes\TaxonomyAttribute::make('payment_method_id', Config::get('amethyst.contract.data.contract.attributes.payment_method.parent'))
+                ->setRelationName('payment_method'),
             Attributes\EnumAttribute::make('status', [
                 static::STATUS_PENDING,
                 static::STATUS_STARTED,

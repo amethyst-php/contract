@@ -30,7 +30,8 @@ class CreateContractsTable extends Migration
             $table->string('locale');
             $table->string('currency');
 
-            $table->string('payment_method')->nullable();
+            $table->integer('payment_method_id')->unsigned()->nullable();
+            $table->foreign('payment_method_id')->references('id')->on(Config::get('amethyst.taxonomy.data.taxonomy.table'));
 
             $table->date('started_at')->nullable();
             $table->date('suspended_at')->nullable();

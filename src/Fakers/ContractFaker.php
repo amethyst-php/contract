@@ -3,6 +3,7 @@
 namespace Railken\Amethyst\Fakers;
 
 use Faker\Factory;
+use Illuminate\Support\Facades\Config;
 use Railken\Bag;
 use Railken\Lem\Faker;
 
@@ -24,7 +25,8 @@ class ContractFaker extends Faker
         $bag->set('country', 'IT');
         $bag->set('locale', 'it_IT');
         $bag->set('currency', 'EUR');
-        $bag->set('payment_method', 'iban');
+        $bag->set('group', TaxonomyFaker::make()->parameters()->toArray());
+        $bag->set('group.parent.name', Config::get('amethyst.contract.data.contract.attributes.payment_method.parent'));
 
         return $bag;
     }
