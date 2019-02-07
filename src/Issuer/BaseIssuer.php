@@ -56,15 +56,18 @@ class BaseIssuer implements IssuerContract
     {
         $manager = new InvoiceManager();
 
-        return $manager->createOrFail([
+        $params = [
             'country'      => $contract->country,
             'locale'       => $contract->locale,
             'currency'     => $contract->currency,
             'tax_id'       => $contract->tax->id,
             'recipient_id' => $contract->customer->legal_entity->id,
-            'sender_id'    => $sender->id, // ToDO: base config with base entity local id
-            'expires_at'   => (new \DateTime())->modify('+14 days')->format('Y-m-d H:i:s'),
-        ])->getResource();
+            'sender_id'    => $sender->id
+        ];
+
+        $invoice = $manager->getRepository()->newQuery()->whereNull('issued_at')->where($params)->first();
+
+        return $invoice ? $invoice : $manager->findOrCreateOrFail($params)->getResource();
     }
 
     public function getParentInvoiceUnit()
