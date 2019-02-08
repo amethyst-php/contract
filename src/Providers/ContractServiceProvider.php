@@ -6,6 +6,8 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Config;
 use Railken\Amethyst\Api\Support\Router;
 use Railken\Amethyst\Common\CommonServiceProvider;
+use Railken\Amethyst\Managers\ContractProductManager;
+use Railken\Amethyst\Models\ContractProduct;
 
 class ContractServiceProvider extends CommonServiceProvider
 {
@@ -19,10 +21,13 @@ class ContractServiceProvider extends CommonServiceProvider
 
         $this->app->register(\Railken\Amethyst\Providers\AddressServiceProvider::class);
         $this->app->register(\Railken\Amethyst\Providers\TaxServiceProvider::class);
-        $this->app->register(\Railken\Amethyst\Providers\SellableProductCatalogueServiceProvider::class);
+        $this->app->register(\Railken\Amethyst\Providers\CatalogueProductServiceProvider::class);
         $this->app->register(\Railken\Amethyst\Providers\CustomerServiceProvider::class);
         $this->app->register(\Railken\Amethyst\Providers\InvoiceServiceProvider::class);
         $this->app->register(\Railken\Amethyst\Providers\TaxonomyServiceProvider::class);
+        $this->app->register(\Railken\Amethyst\Providers\PriceServiceProvider::class);
+
+        Config::set('amethyst.price.data.price.attributes.priceable.options.'.ContractProduct::class, ContractProductManager::class);
     }
 
     /**

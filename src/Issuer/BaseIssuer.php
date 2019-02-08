@@ -62,7 +62,7 @@ class BaseIssuer implements IssuerContract
             'currency'     => $contract->currency,
             'tax_id'       => $contract->tax->id,
             'recipient_id' => $contract->customer->legal_entity->id,
-            'sender_id'    => $sender->id
+            'sender_id'    => $sender->id,
         ];
 
         $invoice = $manager->getRepository()->newQuery()->whereNull('issued_at')->where($params)->first();

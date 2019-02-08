@@ -65,4 +65,12 @@ class ContractProduct extends Model implements EntityContract
     {
         return $this->belongsTo(Taxonomy::class);
     }
+
+    /**
+     * Get all prices.
+     */
+    public function prices()
+    {
+        return $this->morphMany(Price::class, 'priceable');
+    }
 }

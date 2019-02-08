@@ -5,22 +5,25 @@ namespace Railken\Amethyst\Tests\Issuers;
 use Railken\Amethyst\Consumers\BaseConsumer;
 use Railken\Amethyst\ConsumeRules\FrequencyConsumeRule;
 use Railken\Amethyst\Fakers\CatalogueFaker;
+use Railken\Amethyst\Fakers\CatalogueProductFaker;
 use Railken\Amethyst\Fakers\ContractFaker;
 use Railken\Amethyst\Fakers\ContractProductFaker;
 use Railken\Amethyst\Fakers\LegalEntityFaker;
 use Railken\Amethyst\Fakers\ProductFaker;
-use Railken\Amethyst\Fakers\SellableProductCatalogueFaker;
 use Railken\Amethyst\Fakers\TargetFaker;
 use Railken\Amethyst\Issuer\BaseIssuer;
 use Railken\Amethyst\Managers\CatalogueManager;
+use Railken\Amethyst\Managers\CatalogueProductManager;
 use Railken\Amethyst\Managers\ContractManager;
 use Railken\Amethyst\Managers\ContractProductManager;
 use Railken\Amethyst\Managers\LegalEntityManager;
+use Railken\Amethyst\Managers\PriceManager;
 use Railken\Amethyst\Managers\ProductManager;
-use Railken\Amethyst\Managers\SellableProductCatalogueManager;
 use Railken\Amethyst\Managers\TargetManager;
+use Railken\Amethyst\Models\ContractProduct;
 use Railken\Amethyst\PriceRules\BasePriceRule;
 use Railken\Amethyst\Tests\BaseTest;
+use Railken\Bag;
 
 class BaseIssuerTest extends BaseTest
 {
@@ -52,22 +55,15 @@ class BaseIssuerTest extends BaseTest
         )->getResource();
 
         // Indicate the price of the product we're selling
-        $spcm = new SellableProductCatalogueManager();
+        $priceManager = new PriceManager();
 
-        // The price for the subscription of the product
         // Indicate the price of the product we're selling
+        $spcm = new CatalogueProductManager();
+
         $product1BilledMonthly = $spcm->createOrFail(
-            SellableProductCatalogueFaker::make()->parameters()
+            CatalogueProductFaker::make()->parameters()
                 ->remove('catalogue')->set('catalogue_id', $catalogue->id)
                 ->remove('product')->set('product_id', $product->id)
-                ->set('price_rule.class_name', BasePriceRule::class)
-                ->set('consume_rule.class_name', FrequencyConsumeRule::class)
-                ->set('consume_rule.payload', [
-                    'frequency_unit'  => 'months',
-                    'frequency_value' => '1',
-                ])
-                ->set('price', 20)
-                ->remove('target')->set('target_id', $target->id)
         )->getResource();
 
         // Now that we're all sets, we can create a new contract
@@ -87,6 +83,22 @@ class BaseIssuerTest extends BaseTest
                 ->remove('contract')->set('contract_id', $contract->id)
                 ->remove('catalogue')->set('catalogue_id', $catalogue->id)
                 ->remove('product')->set('product_id', $product->id)
+        )->getResource();
+
+        $price = $priceManager->createOrFail(
+            (new Bag())
+                ->set('price_rule.name', 'Rule Name')
+                ->set('price_rule.class_name', BasePriceRule::class)
+                ->set('consume_rule.name', 'Rule Name')
+                ->set('consume_rule.class_name', FrequencyConsumeRule::class)
+                ->set('consume_rule.payload', [
+                    'frequency_unit'  => 'months',
+                    'frequency_value' => '1',
+                ])
+                ->set('price', 20)
+                ->set('priceable_type', ContractProduct::class)
+                ->set('priceable_id', $contractProduct->id)
+                ->set('target_id', $target->id)
         )->getResource();
 
         // Refresh relations

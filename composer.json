@@ -8,7 +8,8 @@
         "railken/amethyst-customer" : "0.1.*",
         "railken/amethyst-taxonomy" : "0.1.*",
         "railken/amethyst-tax" : "0.1.*",
-        "railken/amethyst-sellable-product-catalogue" : "0.1.*",
+        "railken/amethyst-catalogue-product" : "0.1.*",
+        "railken/amethyst-price" : "0.1.*",
         "railken/amethyst-address" : "0.1.*",
         "railken/amethyst-invoice" : "0.1.*"
     },
