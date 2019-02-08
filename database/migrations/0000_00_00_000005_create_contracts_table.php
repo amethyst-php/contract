@@ -46,8 +46,6 @@ class CreateContractsTable extends Migration
 
             $table->integer('contract_id')->unsigned();
             $table->foreign('contract_id')->references('id')->on(Config::get('amethyst.contract.data.contract.table'));
-            $table->integer('catalogue_id')->unsigned();
-            $table->foreign('catalogue_id')->references('id')->on(Config::get('amethyst.catalogue.data.catalogue.table'));
             $table->integer('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on(Config::get('amethyst.product.data.product.table'));
             $table->integer('group_id')->unsigned();

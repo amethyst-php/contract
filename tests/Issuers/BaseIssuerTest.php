@@ -4,16 +4,12 @@ namespace Railken\Amethyst\Tests\Issuers;
 
 use Railken\Amethyst\Consumers\BaseConsumer;
 use Railken\Amethyst\ConsumeRules\FrequencyConsumeRule;
-use Railken\Amethyst\Fakers\CatalogueFaker;
-use Railken\Amethyst\Fakers\CatalogueProductFaker;
 use Railken\Amethyst\Fakers\ContractFaker;
 use Railken\Amethyst\Fakers\ContractProductFaker;
 use Railken\Amethyst\Fakers\LegalEntityFaker;
 use Railken\Amethyst\Fakers\ProductFaker;
 use Railken\Amethyst\Fakers\TargetFaker;
 use Railken\Amethyst\Issuer\BaseIssuer;
-use Railken\Amethyst\Managers\CatalogueManager;
-use Railken\Amethyst\Managers\CatalogueProductManager;
 use Railken\Amethyst\Managers\ContractManager;
 use Railken\Amethyst\Managers\ContractProductManager;
 use Railken\Amethyst\Managers\LegalEntityManager;
@@ -32,11 +28,6 @@ class BaseIssuerTest extends BaseTest
      */
     public function testIssueContractSimpleProduct()
     {
-        // Create a new catalogue
-        // Indicate the group of products which we're selling
-        $cm = new CatalogueManager();
-        $catalogue = $cm->createOrFail(CatalogueFaker::make()->parameters())->getResource();
-
         // Create a new product
         // Indicate what we're selling
         $pm = new ProductManager();
@@ -57,15 +48,6 @@ class BaseIssuerTest extends BaseTest
         // Indicate the price of the product we're selling
         $priceManager = new PriceManager();
 
-        // Indicate the price of the product we're selling
-        $spcm = new CatalogueProductManager();
-
-        $product1BilledMonthly = $spcm->createOrFail(
-            CatalogueProductFaker::make()->parameters()
-                ->remove('catalogue')->set('catalogue_id', $catalogue->id)
-                ->remove('product')->set('product_id', $product->id)
-        )->getResource();
-
         // Now that we're all sets, we can create a new contract
         // Create a new fresh contract
         $cm = new ContractManager();
@@ -81,7 +63,6 @@ class BaseIssuerTest extends BaseTest
             ContractProductFaker::make()->parameters()
                 ->set('renewals', 0)
                 ->remove('contract')->set('contract_id', $contract->id)
-                ->remove('catalogue')->set('catalogue_id', $catalogue->id)
                 ->remove('product')->set('product_id', $product->id)
         )->getResource();
 

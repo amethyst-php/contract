@@ -13,7 +13,6 @@ use Railken\Lem\Contracts\EntityContract;
  * @property \DateTime $terminated_at
  * @property string    $status
  * @property Contract  $contract
- * @property Catalogue $catalogue
  * @property Target    $target
  * @property Group     $group
  * @property Product   $product
@@ -40,14 +39,6 @@ class ContractProduct extends Model implements EntityContract
     public function contract()
     {
         return $this->belongsTo(Contract::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function catalogue()
-    {
-        return $this->belongsTo(Catalogue::class);
     }
 
     /**

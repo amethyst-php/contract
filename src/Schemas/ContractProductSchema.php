@@ -4,7 +4,6 @@ namespace Railken\Amethyst\Schemas;
 
 use Illuminate\Support\Facades\Config;
 use Railken\Amethyst\Attributes as AmethystAttributes;
-use Railken\Amethyst\Managers\CatalogueManager;
 use Railken\Amethyst\Managers\ContractManager;
 use Railken\Amethyst\Managers\ProductManager;
 use Railken\Lem\Attributes;
@@ -26,10 +25,6 @@ class ContractProductSchema extends Schema
     {
         return [
             Attributes\IdAttribute::make(),
-            Attributes\BelongsToAttribute::make('catalogue_id')
-                ->setRelationName('catalogue')
-                ->setRelationManager(CatalogueManager::class)
-                ->setRequired(true),
             Attributes\BelongsToAttribute::make('contract_id')
                 ->setRelationName('contract')
                 ->setRelationManager(ContractManager::class)

@@ -153,7 +153,7 @@ class BaseConsumer implements IssuerContract
 
         foreach ($this->getPricesByContractProduct($contractProduct) as $price) {
             // OneTimeProduct should be added manually
-            // $items = $items->merge($this->handleOneTimeProduct($contractProduct, $sellableProductCatalogue));
+            // $items = $items->merge($this->handleOneTimeProduct($contractProduct, $price));
             $items = $items->merge($this->handleRecurringProduct($contractProduct, $price));
         }
 
