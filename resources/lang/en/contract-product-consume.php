@@ -17,4 +17,4 @@ return [
             'label' => 'Billed At'
         ]
     ]
-]
+];

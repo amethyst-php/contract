@@ -21,4 +21,4 @@ return [
         'products' => 'Products',
         'consumes' => 'Consumes'
     ]
-]
+];
