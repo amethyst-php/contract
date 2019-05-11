@@ -37,7 +37,7 @@ class ContractProductConsume extends Model implements EntityContract
      */
     public function contract(): BelongsTo
     {
-        return $this->belongsTo(Contract::class);
+        return $this->belongsTo(config('amethyst.contract.data.contract.model'));
     }
 
     /**
@@ -45,7 +45,7 @@ class ContractProductConsume extends Model implements EntityContract
      */
     public function product(): BelongsTo
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(config('amethyst.product.data.product.model'));
     }
 
     /**
@@ -53,7 +53,7 @@ class ContractProductConsume extends Model implements EntityContract
      */
     public function tax(): BelongsTo
     {
-        return $this->belongsTo(Tax::class);
+        return $this->belongsTo(config('amethyst.tax.data.tax.model'));
     }
 
     /**
@@ -61,6 +61,6 @@ class ContractProductConsume extends Model implements EntityContract
      */
     public function group(): BelongsTo
     {
-        return $this->belongsTo(Taxonomy::class);
+        return $this->belongsTo(config('amethyst.taxonomy.data.taxonomy.model'));
     }
 }

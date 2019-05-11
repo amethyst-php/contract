@@ -40,7 +40,7 @@ class ContractProduct extends Model implements EntityContract
      */
     public function contract(): BelongsTo
     {
-        return $this->belongsTo(Contract::class);
+        return $this->belongsTo(config('amethyst.contract.data.contract.model'));
     }
 
     /**
@@ -48,7 +48,7 @@ class ContractProduct extends Model implements EntityContract
      */
     public function product(): BelongsTo
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(config('amethyst.product.data.product.model'));
     }
 
     /**
@@ -56,7 +56,7 @@ class ContractProduct extends Model implements EntityContract
      */
     public function group(): BelongsTo
     {
-        return $this->belongsTo(Taxonomy::class);
+        return $this->belongsTo(config('amethyst.taxonomy.data.taxonomy.model'));
     }
 
     /**
@@ -64,6 +64,6 @@ class ContractProduct extends Model implements EntityContract
      */
     public function prices(): MorphMany
     {
-        return $this->morphMany(Price::class, 'priceable');
+        return $this->morphMany(config('amethyst.price.data.price.model'), 'priceable');
     }
 }

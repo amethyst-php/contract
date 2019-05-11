@@ -43,7 +43,7 @@ class Contract extends Model implements EntityContract
      */
     public function customer(): BelongsTo
     {
-        return $this->belongsTo(Customer::class);
+        return $this->belongsTo(config('amethyst.customer.data.customer.model'));
     }
 
     /**
@@ -51,7 +51,7 @@ class Contract extends Model implements EntityContract
      */
     public function target(): BelongsTo
     {
-        return $this->belongsTo(Target::class);
+        return $this->belongsTo(config('amethyst.target.data.target.model'));
     }
 
     /**
@@ -59,7 +59,7 @@ class Contract extends Model implements EntityContract
      */
     public function payment_method(): BelongsTo
     {
-        return $this->belongsTo(Taxonomy::class);
+        return $this->belongsTo(config('amethyst.taxonomy.data.taxonomy.model'));
     }
 
     /**
@@ -67,7 +67,7 @@ class Contract extends Model implements EntityContract
      */
     public function tax(): BelongsTo
     {
-        return $this->belongsTo(Tax::class);
+        return $this->belongsTo(config('amethyst.tax.data.tax.model'));
     }
 
     /**
@@ -75,6 +75,6 @@ class Contract extends Model implements EntityContract
      */
     public function products(): HasMany
     {
-        return $this->hasMany(ContractProduct::class, 'contract_id', 'id');
+        return $this->hasMany(config('amethyst.contract.data.contract-product.model'), 'contract_id', 'id');
     }
 }
