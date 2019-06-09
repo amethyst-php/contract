@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'name' => 'ContractProduct',
-    'description' => 'ContractProduct',
+    'name' => 'Contract Product',
+    'description' => 'Contract Product',
     'attributes' => [
         'group_id' => [
             'label' => 'Group'
