@@ -77,7 +77,7 @@ class BaseIssuerTest extends BaseTest
                     'frequency_value' => '1',
                 ])
                 ->set('price', 20)
-                ->set('priceable_type', ContractProduct::class)
+                ->set('priceable_type', 'contract-product')
                 ->set('priceable_id', $contractProduct->id)
                 ->set('target_id', $target->id)
         )->getResource();

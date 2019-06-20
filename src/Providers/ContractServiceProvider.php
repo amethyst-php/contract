@@ -27,7 +27,16 @@ class ContractServiceProvider extends CommonServiceProvider
         $this->app->register(\Railken\Amethyst\Providers\TaxonomyServiceProvider::class);
         $this->app->register(\Railken\Amethyst\Providers\PriceServiceProvider::class);
 
-        Config::set('amethyst.price.data.price.attributes.priceable.options.'.ContractProduct::class, ContractProductManager::class);
+
+    }
+    /**
+     * @inherit
+     */
+    public function boot()
+    {
+        parent::boot();
+        
+        app('amethyst')->pushMorphRelation('price', 'priceable', 'contract-product');
     }
 
     /**
