@@ -16,7 +16,6 @@ use Railken\Amethyst\Managers\LegalEntityManager;
 use Railken\Amethyst\Managers\PriceManager;
 use Railken\Amethyst\Managers\ProductManager;
 use Railken\Amethyst\Managers\TargetManager;
-use Railken\Amethyst\Models\ContractProduct;
 use Railken\Amethyst\PriceRules\BasePriceRule;
 use Railken\Amethyst\Tests\BaseTest;
 use Railken\Bag;

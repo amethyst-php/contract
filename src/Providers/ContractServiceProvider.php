@@ -6,8 +6,6 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Config;
 use Railken\Amethyst\Api\Support\Router;
 use Railken\Amethyst\Common\CommonServiceProvider;
-use Railken\Amethyst\Managers\ContractProductManager;
-use Railken\Amethyst\Models\ContractProduct;
 
 class ContractServiceProvider extends CommonServiceProvider
 {
@@ -26,16 +24,15 @@ class ContractServiceProvider extends CommonServiceProvider
         $this->app->register(\Railken\Amethyst\Providers\InvoiceServiceProvider::class);
         $this->app->register(\Railken\Amethyst\Providers\TaxonomyServiceProvider::class);
         $this->app->register(\Railken\Amethyst\Providers\PriceServiceProvider::class);
-
-
     }
+
     /**
      * @inherit
      */
     public function boot()
     {
         parent::boot();
-        
+
         app('amethyst')->pushMorphRelation('price', 'priceable', 'contract-product');
     }
 
