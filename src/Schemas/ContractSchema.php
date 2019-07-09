@@ -1,12 +1,12 @@
 <?php
 
-namespace Railken\Amethyst\Schemas;
+namespace Amethyst\Schemas;
 
 use Illuminate\Support\Facades\Config;
-use Railken\Amethyst\Attributes as AmethystAttributes;
-use Railken\Amethyst\Managers\CustomerManager;
-use Railken\Amethyst\Managers\TargetManager;
-use Railken\Amethyst\Managers\TaxManager;
+use Amethyst\Attributes as AmethystAttributes;
+use Amethyst\Managers\CustomerManager;
+use Amethyst\Managers\TargetManager;
+use Amethyst\Managers\TaxManager;
 use Railken\Lem\Attributes;
 use Railken\Lem\Schema;
 

@@ -1,22 +1,22 @@
 <?php
 
-namespace Railken\Amethyst\Issuer;
+namespace Amethyst\Issuer;
 
 use DateTime;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
-use Railken\Amethyst\Contracts\IssuerContract;
-use Railken\Amethyst\Managers\ContractProductConsumeManager;
-use Railken\Amethyst\Managers\InvoiceContainerManager;
-use Railken\Amethyst\Managers\InvoiceItemManager;
-use Railken\Amethyst\Managers\InvoiceManager;
-use Railken\Amethyst\Managers\TaxonomyManager;
-use Railken\Amethyst\Models\Contract;
-use Railken\Amethyst\Models\ContractProductConsume;
-use Railken\Amethyst\Models\Invoice;
-use Railken\Amethyst\Models\InvoiceContainer;
-use Railken\Amethyst\Models\InvoiceItem;
-use Railken\Amethyst\Models\LegalEntity;
+use Amethyst\Contracts\IssuerContract;
+use Amethyst\Managers\ContractProductConsumeManager;
+use Amethyst\Managers\InvoiceContainerManager;
+use Amethyst\Managers\InvoiceItemManager;
+use Amethyst\Managers\InvoiceManager;
+use Amethyst\Managers\TaxonomyManager;
+use Amethyst\Models\Contract;
+use Amethyst\Models\ContractProductConsume;
+use Amethyst\Models\Invoice;
+use Amethyst\Models\InvoiceContainer;
+use Amethyst\Models\InvoiceItem;
+use Amethyst\Models\LegalEntity;
 
 class BaseIssuer implements IssuerContract
 {
@@ -47,10 +47,10 @@ class BaseIssuer implements IssuerContract
     }
 
     /**
-     * @param \Railken\Amethyst\Models\LegalEntity $sender
-     * @param \Railken\Amethyst\Models\Contract    $contract
+     * @param \Amethyst\Models\LegalEntity $sender
+     * @param \Amethyst\Models\Contract    $contract
      *
-     * @return \Railken\Amethyst\Models\Invoice
+     * @return \Amethyst\Models\Invoice
      */
     public function createInvoice(LegalEntity $sender, Contract $contract)
     {
@@ -78,9 +78,9 @@ class BaseIssuer implements IssuerContract
     }
 
     /**
-     * @param \Railken\Amethyst\Models\Invoice                $invoice
-     * @param \Railken\Amethyst\Models\InvoiceContainer       $invoiceContainer
-     * @param \Railken\Amethyst\Models\ContractProductConsume $contractProductConsume
+     * @param \Amethyst\Models\Invoice                $invoice
+     * @param \Amethyst\Models\InvoiceContainer       $invoiceContainer
+     * @param \Amethyst\Models\ContractProductConsume $contractProductConsume
      *
      * @return InvoiceItem
      */
@@ -103,7 +103,7 @@ class BaseIssuer implements IssuerContract
     }
 
     /**
-     * @param \Railken\Amethyst\Models\Invoice $invoice
+     * @param \Amethyst\Models\Invoice $invoice
      * @param string                           $name
      *
      * @return InvoiceItem

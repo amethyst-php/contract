@@ -1,11 +1,11 @@
 <?php
 
-namespace Railken\Amethyst\Managers;
+namespace Amethyst\Managers;
 
-use Railken\Amethyst\Common\ConfigurableManager;
-use Railken\Amethyst\Events;
-use Railken\Amethyst\Models\Contract;
-use Railken\Amethyst\Schemas\ContractSchema;
+use Amethyst\Common\ConfigurableManager;
+use Amethyst\Events;
+use Amethyst\Models\Contract;
+use Amethyst\Schemas\ContractSchema;
 use Railken\Lem\Manager;
 use Railken\Lem\Result;
 
@@ -19,7 +19,7 @@ class ContractManager extends Manager
     protected $config = 'amethyst.contract.data.contract';
 
     /**
-     * @param \Railken\Amethyst\Models\Contract $contract
+     * @param \Amethyst\Models\Contract $contract
      *
      * @return Result
      */
@@ -38,7 +38,7 @@ class ContractManager extends Manager
     }
 
     /**
-     * @param \Railken\Amethyst\Models\Contract $contract
+     * @param \Amethyst\Models\Contract $contract
      *
      * @return Result
      */
@@ -57,7 +57,7 @@ class ContractManager extends Manager
     }
 
     /**
-     * @param \Railken\Amethyst\Models\Contract $contract
+     * @param \Amethyst\Models\Contract $contract
      *
      * @return Result
      */
@@ -76,7 +76,7 @@ class ContractManager extends Manager
     }
 
     /**
-     * @param \Railken\Amethyst\Models\Contract $contract
+     * @param \Amethyst\Models\Contract $contract
      *
      * @return Result
      */

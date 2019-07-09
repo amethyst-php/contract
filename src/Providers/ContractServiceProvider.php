@@ -1,11 +1,11 @@
 <?php
 
-namespace Railken\Amethyst\Providers;
+namespace Amethyst\Providers;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Config;
-use Railken\Amethyst\Api\Support\Router;
-use Railken\Amethyst\Common\CommonServiceProvider;
+use Amethyst\Api\Support\Router;
+use Amethyst\Common\CommonServiceProvider;
 
 class ContractServiceProvider extends CommonServiceProvider
 {
@@ -17,13 +17,13 @@ class ContractServiceProvider extends CommonServiceProvider
         parent::register();
         $this->loadExtraRoutes();
 
-        $this->app->register(\Railken\Amethyst\Providers\AddressServiceProvider::class);
-        $this->app->register(\Railken\Amethyst\Providers\TaxServiceProvider::class);
-        $this->app->register(\Railken\Amethyst\Providers\ProductServiceProvider::class);
-        $this->app->register(\Railken\Amethyst\Providers\CustomerServiceProvider::class);
-        $this->app->register(\Railken\Amethyst\Providers\InvoiceServiceProvider::class);
-        $this->app->register(\Railken\Amethyst\Providers\TaxonomyServiceProvider::class);
-        $this->app->register(\Railken\Amethyst\Providers\PriceServiceProvider::class);
+        $this->app->register(\Amethyst\Providers\AddressServiceProvider::class);
+        $this->app->register(\Amethyst\Providers\TaxServiceProvider::class);
+        $this->app->register(\Amethyst\Providers\ProductServiceProvider::class);
+        $this->app->register(\Amethyst\Providers\CustomerServiceProvider::class);
+        $this->app->register(\Amethyst\Providers\InvoiceServiceProvider::class);
+        $this->app->register(\Amethyst\Providers\TaxonomyServiceProvider::class);
+        $this->app->register(\Amethyst\Providers\PriceServiceProvider::class);
     }
 
     /**

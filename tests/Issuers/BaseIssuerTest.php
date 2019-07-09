@@ -1,23 +1,23 @@
 <?php
 
-namespace Railken\Amethyst\Tests\Issuers;
+namespace Amethyst\Tests\Issuers;
 
-use Railken\Amethyst\Consumers\BaseConsumer;
-use Railken\Amethyst\ConsumeRules\FrequencyConsumeRule;
-use Railken\Amethyst\Fakers\ContractFaker;
-use Railken\Amethyst\Fakers\ContractProductFaker;
-use Railken\Amethyst\Fakers\LegalEntityFaker;
-use Railken\Amethyst\Fakers\ProductFaker;
-use Railken\Amethyst\Fakers\TargetFaker;
-use Railken\Amethyst\Issuer\BaseIssuer;
-use Railken\Amethyst\Managers\ContractManager;
-use Railken\Amethyst\Managers\ContractProductManager;
-use Railken\Amethyst\Managers\LegalEntityManager;
-use Railken\Amethyst\Managers\PriceManager;
-use Railken\Amethyst\Managers\ProductManager;
-use Railken\Amethyst\Managers\TargetManager;
-use Railken\Amethyst\PriceRules\BasePriceRule;
-use Railken\Amethyst\Tests\BaseTest;
+use Amethyst\Consumers\BaseConsumer;
+use Amethyst\ConsumeRules\FrequencyConsumeRule;
+use Amethyst\Fakers\ContractFaker;
+use Amethyst\Fakers\ContractProductFaker;
+use Amethyst\Fakers\LegalEntityFaker;
+use Amethyst\Fakers\ProductFaker;
+use Amethyst\Fakers\TargetFaker;
+use Amethyst\Issuer\BaseIssuer;
+use Amethyst\Managers\ContractManager;
+use Amethyst\Managers\ContractProductManager;
+use Amethyst\Managers\LegalEntityManager;
+use Amethyst\Managers\PriceManager;
+use Amethyst\Managers\ProductManager;
+use Amethyst\Managers\TargetManager;
+use Amethyst\PriceRules\BasePriceRule;
+use Amethyst\Tests\BaseTest;
 use Railken\Bag;
 
 class BaseIssuerTest extends BaseTest

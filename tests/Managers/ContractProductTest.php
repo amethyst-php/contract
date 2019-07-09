@@ -1,11 +1,11 @@
 <?php
 
-namespace Railken\Amethyst\Tests\Managers;
+namespace Amethyst\Tests\Managers;
 
-use Railken\Amethyst\Fakers\ContractProductFaker;
-use Railken\Amethyst\Managers\ContractProductManager;
-use Railken\Amethyst\Schemas\ContractProductSchema;
-use Railken\Amethyst\Tests\BaseTest;
+use Amethyst\Fakers\ContractProductFaker;
+use Amethyst\Managers\ContractProductManager;
+use Amethyst\Schemas\ContractProductSchema;
+use Amethyst\Tests\BaseTest;
 use Railken\Lem\Support\Testing\TestableBaseTrait;
 
 class ContractProductTest extends BaseTest

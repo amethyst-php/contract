@@ -1,16 +1,16 @@
 <?php
 
-namespace Railken\Amethyst\Consumers;
+namespace Amethyst\Consumers;
 
 use Illuminate\Support\Collection;
-use Railken\Amethyst\Contracts\IssuerContract;
-use Railken\Amethyst\Managers\ContractProductConsumeManager;
-use Railken\Amethyst\Models\Contract;
-use Railken\Amethyst\Models\ContractProduct;
-use Railken\Amethyst\Models\InvoiceItem;
-use Railken\Amethyst\Models\Price;
-use Railken\Amethyst\Schemas\ContractProductSchema;
-use Railken\Amethyst\Schemas\ContractSchema;
+use Amethyst\Contracts\IssuerContract;
+use Amethyst\Managers\ContractProductConsumeManager;
+use Amethyst\Models\Contract;
+use Amethyst\Models\ContractProduct;
+use Amethyst\Models\InvoiceItem;
+use Amethyst\Models\Price;
+use Amethyst\Schemas\ContractProductSchema;
+use Amethyst\Schemas\ContractSchema;
 use Railken\Bag;
 
 class BaseConsumer implements IssuerContract
@@ -32,7 +32,7 @@ class BaseConsumer implements IssuerContract
         $rule = new $class_name();
 
         // This product should be handled has one-time product. Bill immediately if the renewals is 0
-        if ($rule instanceof \Railken\Amethyst\ConsumeRules\BaseConsumeRule) {
+        if ($rule instanceof \Amethyst\ConsumeRules\BaseConsumeRule) {
             if (intval($contractProduct->renewals) === 0) {
                 $items->push(new Bag([
                     'price'            => $price,
@@ -88,7 +88,7 @@ class BaseConsumer implements IssuerContract
         $rule = new $class_name();
 
         // This product should be handled has one-time product. Bill immediately if the renewals is 0
-        if ($rule instanceof \Railken\Amethyst\ConsumeRules\FrequencyConsumeRule) {
+        if ($rule instanceof \Amethyst\ConsumeRules\FrequencyConsumeRule) {
             // Retrieve last created_at for the same product;
 
             $cpm = new ContractProductConsumeManager();

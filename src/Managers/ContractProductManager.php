@@ -1,11 +1,11 @@
 <?php
 
-namespace Railken\Amethyst\Managers;
+namespace Amethyst\Managers;
 
-use Railken\Amethyst\Common\ConfigurableManager;
-use Railken\Amethyst\Events;
-use Railken\Amethyst\Models\ContractProduct;
-use Railken\Amethyst\Schemas\ContractProductSchema;
+use Amethyst\Common\ConfigurableManager;
+use Amethyst\Events;
+use Amethyst\Models\ContractProduct;
+use Amethyst\Schemas\ContractProductSchema;
 use Railken\Lem\Manager;
 use Railken\Lem\Result;
 
@@ -19,7 +19,7 @@ class ContractProductManager extends Manager
     protected $config = 'amethyst.contract.data.contract-product';
 
     /**
-     * @param \Railken\Amethyst\Models\ContractProduct $contractProduct
+     * @param \Amethyst\Models\ContractProduct $contractProduct
      *
      * @return Result
      */
@@ -38,7 +38,7 @@ class ContractProductManager extends Manager
     }
 
     /**
-     * @param \Railken\Amethyst\Models\ContractProduct $contractProduct
+     * @param \Amethyst\Models\ContractProduct $contractProduct
      *
      * @return Result
      */
@@ -57,7 +57,7 @@ class ContractProductManager extends Manager
     }
 
     /**
-     * @param \Railken\Amethyst\Models\ContractProduct $contractProduct
+     * @param \Amethyst\Models\ContractProduct $contractProduct
      *
      * @return Result
      */
@@ -76,7 +76,7 @@ class ContractProductManager extends Manager
     }
 
     /**
-     * @param \Railken\Amethyst\Models\ContractProduct $contractProduct
+     * @param \Amethyst\Models\ContractProduct $contractProduct
      *
      * @return Result
      */

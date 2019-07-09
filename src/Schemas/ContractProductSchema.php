@@ -1,11 +1,11 @@
 <?php
 
-namespace Railken\Amethyst\Schemas;
+namespace Amethyst\Schemas;
 
 use Illuminate\Support\Facades\Config;
-use Railken\Amethyst\Attributes as AmethystAttributes;
-use Railken\Amethyst\Managers\ContractManager;
-use Railken\Amethyst\Managers\ProductManager;
+use Amethyst\Attributes as AmethystAttributes;
+use Amethyst\Managers\ContractManager;
+use Amethyst\Managers\ProductManager;
 use Railken\Lem\Attributes;
 use Railken\Lem\Schema;
 

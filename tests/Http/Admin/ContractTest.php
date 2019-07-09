@@ -1,11 +1,11 @@
 <?php
 
-namespace Railken\Amethyst\Tests\Http\Admin;
+namespace Amethyst\Tests\Http\Admin;
 
-use Railken\Amethyst\Api\Support\Testing\TestableBaseTrait;
-use Railken\Amethyst\Fakers\ContractFaker;
-use Railken\Amethyst\Managers\ContractManager;
-use Railken\Amethyst\Tests\BaseTest;
+use Amethyst\Api\Support\Testing\TestableBaseTrait;
+use Amethyst\Fakers\ContractFaker;
+use Amethyst\Managers\ContractManager;
+use Amethyst\Tests\BaseTest;
 
 class ContractTest extends BaseTest
 {

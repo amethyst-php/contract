@@ -1,11 +1,11 @@
 <?php
 
-namespace Railken\Amethyst\Http\Controllers\Admin;
+namespace Amethyst\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Railken\Amethyst\Api\Http\Controllers\RestManagerController;
-use Railken\Amethyst\Api\Http\Controllers\Traits as RestTraits;
-use Railken\Amethyst\Managers\ContractProductManager;
+use Amethyst\Api\Http\Controllers\RestManagerController;
+use Amethyst\Api\Http\Controllers\Traits as RestTraits;
+use Amethyst\Managers\ContractProductManager;
 use Symfony\Component\HttpFoundation\Response;
 
 class ContractProductsController extends RestManagerController
