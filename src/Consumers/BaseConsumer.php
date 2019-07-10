@@ -2,7 +2,6 @@
 
 namespace Amethyst\Consumers;
 
-use Illuminate\Support\Collection;
 use Amethyst\Contracts\IssuerContract;
 use Amethyst\Managers\ContractProductConsumeManager;
 use Amethyst\Models\Contract;
@@ -11,6 +10,7 @@ use Amethyst\Models\InvoiceItem;
 use Amethyst\Models\Price;
 use Amethyst\Schemas\ContractProductSchema;
 use Amethyst\Schemas\ContractSchema;
+use Illuminate\Support\Collection;
 use Railken\Bag;
 
 class BaseConsumer implements IssuerContract

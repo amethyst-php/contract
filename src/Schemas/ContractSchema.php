@@ -2,11 +2,11 @@
 
 namespace Amethyst\Schemas;
 
-use Illuminate\Support\Facades\Config;
 use Amethyst\Attributes as AmethystAttributes;
 use Amethyst\Managers\CustomerManager;
 use Amethyst\Managers\TargetManager;
 use Amethyst\Managers\TaxManager;
+use Illuminate\Support\Facades\Config;
 use Railken\Lem\Attributes;
 use Railken\Lem\Schema;
 

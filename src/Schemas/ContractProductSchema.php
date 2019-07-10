@@ -2,10 +2,10 @@
 
 namespace Amethyst\Schemas;
 
-use Illuminate\Support\Facades\Config;
 use Amethyst\Attributes as AmethystAttributes;
 use Amethyst\Managers\ContractManager;
 use Amethyst\Managers\ProductManager;
+use Illuminate\Support\Facades\Config;
 use Railken\Lem\Attributes;
 use Railken\Lem\Schema;
 

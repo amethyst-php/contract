@@ -2,8 +2,8 @@
 
 namespace Amethyst\Events;
 
-use Illuminate\Queue\SerializesModels;
 use Amethyst\Models\ContractProduct;
+use Illuminate\Queue\SerializesModels;
 
 abstract class ContractProductEvent
 {

@@ -2,10 +2,10 @@
 
 namespace Amethyst\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use Amethyst\Api\Http\Controllers\RestManagerController;
 use Amethyst\Api\Http\Controllers\Traits as RestTraits;
 use Amethyst\Managers\ContractManager;
+use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class ContractsController extends RestManagerController

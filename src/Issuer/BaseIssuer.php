@@ -2,9 +2,6 @@
 
 namespace Amethyst\Issuer;
 
-use DateTime;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Config;
 use Amethyst\Contracts\IssuerContract;
 use Amethyst\Managers\ContractProductConsumeManager;
 use Amethyst\Managers\InvoiceContainerManager;
@@ -17,6 +14,9 @@ use Amethyst\Models\Invoice;
 use Amethyst\Models\InvoiceContainer;
 use Amethyst\Models\InvoiceItem;
 use Amethyst\Models\LegalEntity;
+use DateTime;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Config;
 
 class BaseIssuer implements IssuerContract
 {
@@ -104,7 +104,7 @@ class BaseIssuer implements IssuerContract
 
     /**
      * @param \Amethyst\Models\Invoice $invoice
-     * @param string                           $name
+     * @param string                   $name
      *
      * @return InvoiceItem
      */
