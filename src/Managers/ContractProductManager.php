@@ -9,6 +9,14 @@ use Amethyst\Schemas\ContractProductSchema;
 use Railken\Lem\Manager;
 use Railken\Lem\Result;
 
+/**
+ * @method \Amethyst\Models\ContractProduct newEntity()
+ * @method \Amethyst\Schemas\ContractProductSchema getSchema()
+ * @method \Amethyst\Repositories\ContractProductRepository getRepository()
+ * @method \Amethyst\Serializers\ContractProductSerializer getSerializer()
+ * @method \Amethyst\Validators\ContractProductValidator getValidator()
+ * @method \Amethyst\Authorizers\ContractProductAuthorizer getAuthorizer()
+ */
 class ContractProductManager extends Manager
 {
     use ConfigurableManager;
