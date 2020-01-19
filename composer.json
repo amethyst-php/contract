@@ -3,19 +3,19 @@
     "keywords": ["laravel", "amethyst", "amethyst-contract", "contract"],
     "license": "MIT",
     "require": {
-        "php": ">=7.1",
-        "amethyst/common": "0.1.*",
-        "amethyst/customer" : "0.1.*",
-        "amethyst/taxonomy" : "0.1.*",
-        "amethyst/tax" : "0.1.*",
-        "amethyst/product" : "0.1.*",
-        "amethyst/price" : "0.1.*",
-        "amethyst/address" : "0.1.*",
-        "amethyst/invoice" : "0.1.*"
+        "php": ">=7.2",
+        "amethyst/core": "0.2.*",
+        "amethyst/customer" : "0.2.*",
+        "amethyst/taxonomy" : "0.2.*",
+        "amethyst/tax" : "0.2.*",
+        "amethyst/product" : "0.2.*",
+        "amethyst/price" : "0.2.*",
+        "amethyst/address" : "0.2.*",
+        "amethyst/invoice" : "0.2.*"
     },
     "require-dev": {
-        "phpunit/phpunit": "~7.1",
-        "orchestra/testbench": "3.*"
+        "phpunit/phpunit": "*",
+        "orchestra/testbench": "*"
     },
     "autoload": {
         "psr-4" : {

@@ -1,6 +1,6 @@
 # amethyst-contract
 
-[![Build Status](https://travis-ci.org/amethyst-php/contract.svg?branch=master)](https://travis-ci.org/amethyst-php/contract)
+[![Action Status](https://github.com/amethyst-php/contract/workflows/test/badge.svg)](https://github.com/amethyst-php/contract/actions)
 
 [Amethyst](https://github.com/amethyst-php/amethyst) package.
 
