@@ -53,41 +53,4 @@ return [
             'manager'    => Amethyst\Managers\ContractProductConsumeManager::class,
         ],
     ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Http configuration
-    |--------------------------------------------------------------------------
-    |
-    | Here you may configure the routes
-    |
-    */
-    'http' => [
-        'admin' => [
-            'contract' => [
-                'enabled'    => true,
-                'controller' => Amethyst\Http\Controllers\Admin\ContractsController::class,
-                'router'     => [
-                    'as'     => 'contract.',
-                    'prefix' => '/contracts',
-                ],
-            ],
-            'contract-product' => [
-                'enabled'    => true,
-                'controller' => Amethyst\Http\Controllers\Admin\ContractProductsController::class,
-                'router'     => [
-                    'as'     => 'contract-product.',
-                    'prefix' => '/contract-products',
-                ],
-            ],
-            'contract-product-consume' => [
-                'enabled'    => true,
-                'controller' => Amethyst\Http\Controllers\Admin\ContractProductConsumesController::class,
-                'router'     => [
-                    'as'     => 'contract-product-consume.',
-                    'prefix' => '/contract-product-consumes',
-                ],
-            ],
-        ],
-    ],
 ];
