@@ -32,8 +32,6 @@ class ContractServiceProvider extends CommonServiceProvider
     public function boot()
     {
         parent::boot();
-
-        app('amethyst')->pushMorphRelation('price', 'priceable', 'contract-product');
     }
 
     /**
